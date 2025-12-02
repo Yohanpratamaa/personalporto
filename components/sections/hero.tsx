@@ -6,6 +6,15 @@ import { ArrowDown, Download, Github, Linkedin, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 import { useRef } from "react";
+import {
+  BlurText,
+  SplitText,
+  Magnetic,
+  Floating,
+  GradientText,
+  FadeContent,
+  Typewriter,
+} from "@/components/ui/animations";
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -22,39 +31,6 @@ export function Hero() {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 40, filter: "blur(10px)" },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: "blur(0px)",
-      transition: {
-        duration: 0.7,
-        ease: [0.25, 0.4, 0.25, 1] as const,
-      },
-    },
-  };
-
-  const floatingAnimation = {
-    y: [-10, 10, -10],
-    transition: {
-      duration: 6,
-      repeat: Infinity,
-      ease: "easeInOut" as const,
-    },
   };
 
   return (
@@ -103,90 +79,98 @@ export function Hero() {
       </motion.div>
 
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-20"
-        >
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-20">
           {/* Text Content */}
           <div className="flex-1 text-center lg:text-left max-w-2xl">
-            <motion.div variants={itemVariants}>
+            <FadeContent delay={0.2} direction="up" blur>
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-8 border border-primary/20">
                 <Sparkles className="h-4 w-4" />
-                Welcome to my portfolio
+                <Typewriter
+                  text="Welcome to my portfolio"
+                  speed={40}
+                  delay={0.5}
+                />
               </span>
-            </motion.div>
+            </FadeContent>
 
-            <motion.h1
-              variants={itemVariants}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]"
-            >
-              Hi, I&apos;m{" "}
-              <span className="relative">
-                <span className="bg-linear-to-r from-primary via-blue-500 to-purple-600 bg-clip-text text-transparent">
-                  {siteConfig.name}
-                </span>
+            <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
+              <BlurText text="Hi, I'm" className="mb-2" delay={0.3} />
+              <div className="relative inline-block">
+                <GradientText
+                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold"
+                  colors={["#3b82f6", "#8b5cf6", "#ec4899", "#3b82f6"]}
+                  animationSpeed={4}
+                >
+                  <SplitText
+                    text={siteConfig.name}
+                    delay={0.6}
+                    staggerDelay={0.05}
+                  />
+                </GradientText>
                 <motion.span
                   className="absolute -bottom-2 left-0 right-0 h-1 bg-linear-to-r from-primary via-blue-500 to-purple-600 rounded-full"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
-                  transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
+                  transition={{ delay: 1.5, duration: 0.8, ease: "easeOut" }}
                 />
-              </span>
-            </motion.h1>
+              </div>
+            </div>
 
-            <motion.p
-              variants={itemVariants}
-              className="mt-6 text-xl sm:text-2xl text-muted-foreground font-medium"
-            >
-              {siteConfig.title}
-            </motion.p>
+            <FadeContent delay={0.8} direction="up" className="mt-6">
+              <p className="text-xl sm:text-2xl text-muted-foreground font-medium">
+                {siteConfig.title}
+              </p>
+            </FadeContent>
 
-            <motion.p
-              variants={itemVariants}
-              className="mt-6 text-lg text-muted-foreground/80 max-w-xl mx-auto lg:mx-0 leading-relaxed"
-            >
-              {siteConfig.description}
-            </motion.p>
+            <FadeContent delay={1} direction="up" className="mt-6">
+              <p className="text-lg text-muted-foreground/80 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                {siteConfig.description}
+              </p>
+            </FadeContent>
 
             {/* CTA Buttons */}
-            <motion.div
-              variants={itemVariants}
+            <FadeContent
+              delay={1.2}
+              direction="up"
               className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
             >
-              <Button
-                size="lg"
-                onClick={handleScrollToProjects}
-                className="group relative overflow-hidden px-8 py-6 text-base"
-              >
-                <span className="relative z-10 flex items-center">
-                  View Projects
-                  <ArrowDown className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform duration-300" />
-                </span>
-                <motion.div
-                  className="absolute inset-0 bg-linear-to-r from-primary to-blue-600"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                asChild
-                className="px-8 py-6 text-base border-2 hover:bg-primary/5 transition-all duration-300"
-              >
-                <a href={siteConfig.resume} download>
-                  <Download className="mr-2 h-4 w-4" />
-                  Download CV
-                </a>
-              </Button>
-            </motion.div>
+              <Magnetic strength={0.2}>
+                <Button
+                  size="lg"
+                  onClick={handleScrollToProjects}
+                  className="group relative overflow-hidden px-8 py-6 text-base"
+                >
+                  <span className="relative z-10 flex items-center">
+                    View Projects
+                    <ArrowDown className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform duration-300" />
+                  </span>
+                  <motion.div
+                    className="absolute inset-0 bg-linear-to-r from-primary to-blue-600"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </Button>
+              </Magnetic>
+              <Magnetic strength={0.2}>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  asChild
+                  className="px-8 py-6 text-base border-2 hover:bg-primary/5 transition-all duration-300"
+                >
+                  <a href={siteConfig.resume} download>
+                    <Download className="mr-2 h-4 w-4" />
+                    Download CV
+                  </a>
+                </Button>
+              </Magnetic>
+            </FadeContent>
 
             {/* Social Links */}
-            <motion.div
-              variants={itemVariants}
+            <FadeContent
+              delay={1.4}
+              direction="up"
               className="mt-10 flex gap-4 justify-center lg:justify-start"
             >
               {[
@@ -201,96 +185,113 @@ export function Hero() {
                   label: "LinkedIn",
                 },
               ].map((social) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-muted/50 hover:bg-primary/10 text-muted-foreground hover:text-primary border border-transparent hover:border-primary/20 transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <social.icon className="h-5 w-5" />
-                </motion.a>
+                <Magnetic key={social.label} strength={0.4}>
+                  <motion.a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-xl bg-muted/50 hover:bg-primary/10 text-muted-foreground hover:text-primary border border-transparent hover:border-primary/20 transition-all duration-300"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <social.icon className="h-5 w-5" />
+                  </motion.a>
+                </Magnetic>
               ))}
-            </motion.div>
+            </FadeContent>
           </div>
 
           {/* Profile Image */}
-          <motion.div
-            variants={itemVariants}
-            className="shrink-0"
-            animate={floatingAnimation}
-          >
-            <div className="relative">
-              {/* Glow effect */}
-              <div className="absolute -inset-4 bg-linear-to-r from-primary/30 via-blue-500/30 to-purple-500/30 rounded-full blur-2xl opacity-60" />
-
-              {/* Decorative rings */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                className="absolute -inset-6 rounded-full border border-dashed border-primary/20"
-              />
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                className="absolute -inset-12 rounded-full border border-dotted border-primary/10"
-              />
-
-              {/* Image container */}
-              <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-background shadow-2xl ring-1 ring-primary/10">
-                <Image
-                  src="/profile.jpg"
-                  alt={siteConfig.name}
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="(max-width: 640px) 288px, (max-width: 1024px) 320px, 384px"
+          <FadeContent delay={0.5} direction="right" className="shrink-0">
+            <Floating duration={4} distance={15}>
+              <div className="relative">
+                {/* Glow effect */}
+                <motion.div
+                  className="absolute -inset-4 bg-linear-to-r from-primary/30 via-blue-500/30 to-purple-500/30 rounded-full blur-2xl"
+                  animate={{ opacity: [0.4, 0.7, 0.4] }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                 />
-                {/* Fallback gradient */}
-                <div className="absolute inset-0 bg-linear-to-br from-primary/20 via-blue-500/20 to-purple-500/20 flex items-center justify-center">
-                  <span className="text-7xl font-bold text-primary/40">
-                    {siteConfig.name.charAt(0)}
-                  </span>
+
+                {/* Decorative rings */}
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{
+                    duration: 30,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                  className="absolute -inset-6 rounded-full border border-dashed border-primary/20"
+                />
+                <motion.div
+                  animate={{ rotate: -360 }}
+                  transition={{
+                    duration: 25,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                  className="absolute -inset-12 rounded-full border border-dotted border-primary/10"
+                />
+
+                {/* Image container */}
+                <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-background shadow-2xl ring-1 ring-primary/10">
+                  <Image
+                    src="/profile.jpg"
+                    alt={siteConfig.name}
+                    fill
+                    className="object-cover"
+                    priority
+                    sizes="(max-width: 640px) 288px, (max-width: 1024px) 320px, 384px"
+                  />
+                  {/* Fallback gradient */}
+                  <div className="absolute inset-0 bg-linear-to-br from-primary/20 via-blue-500/20 to-purple-500/20 flex items-center justify-center">
+                    <span className="text-7xl font-bold text-primary/40">
+                      {siteConfig.name.charAt(0)}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </motion.div>
-        </motion.div>
+            </Floating>
+          </FadeContent>
+        </div>
 
         {/* Scroll indicator */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2, duration: 0.5 }}
+          transition={{ delay: 2.5, duration: 0.5 }}
           className="absolute bottom-12 left-1/2 -translate-x-1/2"
         >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="flex flex-col items-center text-muted-foreground/60 hover:text-muted-foreground transition-colors cursor-pointer"
-            onClick={() =>
-              document
-                .querySelector("#about")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-          >
-            <span className="text-xs font-medium tracking-widest uppercase mb-3">
-              Scroll
-            </span>
-            <div className="w-6 h-10 border-2 border-current rounded-full flex justify-center pt-2">
-              <motion.div
-                animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="w-1.5 h-1.5 bg-current rounded-full"
-              />
-            </div>
-          </motion.div>
+          <Magnetic strength={0.5}>
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="flex flex-col items-center text-muted-foreground/60 hover:text-muted-foreground transition-colors cursor-pointer"
+              onClick={() =>
+                document
+                  .querySelector("#about")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
+              <span className="text-xs font-medium tracking-widest uppercase mb-3">
+                Scroll
+              </span>
+              <div className="w-6 h-10 border-2 border-current rounded-full flex justify-center pt-2">
+                <motion.div
+                  animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="w-1.5 h-1.5 bg-current rounded-full"
+                />
+              </div>
+            </motion.div>
+          </Magnetic>
         </motion.div>
       </div>
     </section>

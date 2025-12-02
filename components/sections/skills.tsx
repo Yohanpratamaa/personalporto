@@ -6,6 +6,14 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { skills } from "@/config/site";
 import { Code2, Server, Brain, Wrench } from "lucide-react";
+import {
+  FadeContent,
+  TiltCard,
+  SpotlightCard,
+  StaggerChildren,
+  Floating,
+  Magnetic,
+} from "@/components/ui/animations";
 
 const skillCategories = [
   {
@@ -56,92 +64,117 @@ export function Skills() {
       {/* Background decoration */}
       <div className="absolute inset-0 bg-linear-to-b from-background via-muted/30 to-background" />
 
+      {/* Floating decorative elements */}
+      <Floating
+        duration={4}
+        distance={15}
+        className="absolute top-20 left-10 opacity-20"
+      >
+        <div className="w-20 h-20 rounded-full bg-linear-to-br from-blue-500 to-cyan-500 blur-2xl" />
+      </Floating>
+      <Floating
+        duration={5}
+        distance={12}
+        delay={1}
+        className="absolute bottom-20 right-10 opacity-20"
+      >
+        <div className="w-24 h-24 rounded-full bg-linear-to-br from-purple-500 to-pink-500 blur-2xl" />
+      </Floating>
+
       <div className="relative">
         <SectionHeader
           title="Skills & Technologies"
           subtitle="The tools and technologies I use to bring ideas to life"
         />
 
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+        <StaggerChildren
+          className="grid md:grid-cols-2 gap-6 lg:gap-8"
+          staggerDelay={0.15}
+        >
           {skillCategories.map((category, categoryIndex) => (
-            <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.5,
-                delay: categoryIndex * 0.1,
-                ease: "easeOut",
-              }}
-              whileHover={{ y: -5, transition: { duration: 0.2 } }}
-            >
-              <Card className="h-full border border-border/50 bg-background/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300 group overflow-hidden">
-                <CardHeader className="pb-4">
-                  <CardTitle className="flex items-center gap-4">
-                    <div
-                      className={`p-3 rounded-xl bg-linear-to-br ${category.gradient} shadow-lg group-hover:scale-110 transition-transform duration-300`}
-                    >
-                      <category.icon className="h-6 w-6 text-white" />
-                    </div>
-                    <span className="text-xl font-bold">{category.title}</span>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2.5">
-                    {category.skills.map((skill, skillIndex) => (
-                      <motion.div
-                        key={skill}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{
-                          duration: 0.3,
-                          delay: categoryIndex * 0.1 + skillIndex * 0.04,
-                        }}
-                        whileHover={{ scale: 1.05 }}
-                      >
-                        <Badge
-                          variant="outline"
-                          className={`${category.badgeColor} transition-all duration-200 cursor-default px-3 py-1.5 text-sm font-medium`}
+            <TiltCard key={category.title} maxTilt={8} scale={1.02}>
+              <SpotlightCard>
+                <Card className="h-full border border-border/50 bg-background/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300 group overflow-hidden">
+                  <CardHeader className="pb-4">
+                    <CardTitle className="flex items-center gap-4">
+                      <Magnetic strength={0.2}>
+                        <motion.div
+                          className={`p-3 rounded-xl bg-linear-to-br ${category.gradient} shadow-lg`}
+                          whileHover={{ rotate: 10, scale: 1.1 }}
+                          transition={{ type: "spring", stiffness: 300 }}
                         >
-                          {skill}
-                        </Badge>
-                      </motion.div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+                          <category.icon className="h-6 w-6 text-white" />
+                        </motion.div>
+                      </Magnetic>
+                      <span className="text-xl font-bold">
+                        {category.title}
+                      </span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2.5">
+                      {category.skills.map((skill, skillIndex) => (
+                        <motion.div
+                          key={skill}
+                          initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{
+                            duration: 0.4,
+                            delay: categoryIndex * 0.15 + skillIndex * 0.05,
+                            type: "spring",
+                            stiffness: 200,
+                          }}
+                          whileHover={{
+                            scale: 1.1,
+                            y: -3,
+                            transition: { duration: 0.2 },
+                          }}
+                        >
+                          <Badge
+                            variant="outline"
+                            className={`${category.badgeColor} transition-all duration-200 cursor-default px-3 py-1.5 text-sm font-medium hover:shadow-md`}
+                          >
+                            {skill}
+                          </Badge>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </SpotlightCard>
+            </TiltCard>
           ))}
-        </div>
+        </StaggerChildren>
 
         {/* Additional Skills Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
+        <FadeContent
+          delay={0.5}
+          direction="up"
+          blur
           className="mt-16 text-center"
         >
-          <Card className="inline-block border border-border/50 bg-background/80 backdrop-blur-sm">
-            <CardContent className="px-8 py-6">
-              <p className="text-muted-foreground max-w-2xl">
-                I&apos;m constantly learning and expanding my skill set.
-                Currently exploring{" "}
-                <span className="text-primary font-semibold">
-                  Web3 technologies
-                </span>
-                , <span className="text-primary font-semibold">Kubernetes</span>
-                , and{" "}
-                <span className="text-primary font-semibold">
-                  advanced AI/ML patterns
-                </span>
-                .
-              </p>
-            </CardContent>
-          </Card>
-        </motion.div>
+          <Magnetic strength={0.1}>
+            <Card className="inline-block border border-border/50 bg-background/80 backdrop-blur-sm hover:shadow-lg transition-all duration-300">
+              <CardContent className="px-8 py-6">
+                <p className="text-muted-foreground max-w-2xl">
+                  I&apos;m constantly learning and expanding my skill set.
+                  Currently exploring{" "}
+                  <span className="text-primary font-semibold">
+                    Web3 technologies
+                  </span>
+                  ,{" "}
+                  <span className="text-primary font-semibold">Kubernetes</span>
+                  , and{" "}
+                  <span className="text-primary font-semibold">
+                    advanced AI/ML patterns
+                  </span>
+                  .
+                </p>
+              </CardContent>
+            </Card>
+          </Magnetic>
+        </FadeContent>
       </div>
     </SectionWrapper>
   );

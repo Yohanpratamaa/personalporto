@@ -92,7 +92,16 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="relative flex min-h-screen flex-col">
+          {/* Global background effects */}
+          <div className="fixed inset-0 -z-10 bg-gradient-mesh" />
+          <div className="fixed inset-0 -z-10 bg-dot-pattern opacity-40" />
+
+          {/* Animated gradient orbs */}
+          <div className="fixed top-0 -left-40 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] animate-float-slow -z-10" />
+          <div className="fixed top-1/3 -right-40 w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[150px] animate-float-medium -z-10" />
+          <div className="fixed bottom-0 left-1/3 w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] animate-pulse-glow -z-10" />
+
+          <div className="relative flex min-h-screen flex-col bg-noise">
             <Navbar />
             <main className="flex-1">{children}</main>
             <Footer />
