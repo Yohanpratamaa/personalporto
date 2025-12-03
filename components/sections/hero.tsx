@@ -153,13 +153,13 @@ export function Hero() {
         </div>
       </motion.div>
 
-      <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-20">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10 pt-20 lg:pt-0">
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-center gap-8 lg:gap-20">
           {/* Text Content */}
           <div className="flex-1 text-center lg:text-left max-w-2xl">
             <FadeContent delay={0.2} direction="up" blur>
-              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 text-violet-400 text-sm font-medium mb-8 border border-violet-500/20 backdrop-blur-sm">
-                <Rocket className="h-4 w-4" />
+              <span className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-violet-500/10 text-violet-400 text-xs sm:text-sm font-medium mb-4 sm:mb-8 border border-violet-500/20 backdrop-blur-sm">
+                <Rocket className="h-3 w-3 sm:h-4 sm:w-4" />
                 <Typewriter
                   text="Welcome to my universe"
                   speed={40}
@@ -168,15 +168,15 @@ export function Hero() {
               </span>
             </FadeContent>
 
-            <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
+            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1]">
               <BlurText
                 text="Hi, I'm"
-                className="mb-2 text-white"
+                className="mb-1 sm:mb-2 text-white"
                 delay={0.3}
               />
               <div className="relative inline-block">
                 <GradientText
-                  className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold"
                   colors={[
                     "#a855f7",
                     "#8b5cf6",
@@ -201,14 +201,14 @@ export function Hero() {
               </div>
             </div>
 
-            <FadeContent delay={0.8} direction="up" className="mt-6">
-              <p className="text-xl sm:text-2xl text-muted-foreground font-medium">
+            <FadeContent delay={0.8} direction="up" className="mt-4 sm:mt-6">
+              <p className="text-base sm:text-xl md:text-2xl text-muted-foreground font-medium">
                 {siteConfig.title}
               </p>
             </FadeContent>
 
-            <FadeContent delay={1} direction="up" className="mt-6">
-              <p className="text-lg text-muted-foreground/80 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+            <FadeContent delay={1} direction="up" className="mt-3 sm:mt-6">
+              <p className="text-sm sm:text-base lg:text-lg text-muted-foreground/80 max-w-xl mx-auto lg:mx-0 leading-relaxed">
                 {siteConfig.description}
               </p>
             </FadeContent>
@@ -217,15 +217,15 @@ export function Hero() {
             <FadeContent
               delay={1.2}
               direction="up"
-              className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              className="mt-6 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
             >
               <Magnetic strength={0.2}>
                 <Button
                   size="lg"
                   onClick={handleScrollToProjects}
-                  className="group relative overflow-hidden px-8 py-6 text-base"
+                  className="group relative overflow-hidden px-6 py-5 sm:px-8 sm:py-6 text-sm sm:text-base w-full sm:w-auto"
                 >
-                  <span className="relative z-10 flex items-center">
+                  <span className="relative z-10 flex items-center justify-center">
                     View Projects
                     <ArrowDown className="ml-2 h-4 w-4 group-hover:translate-y-1 transition-transform duration-300" />
                   </span>
@@ -242,9 +242,13 @@ export function Hero() {
                   size="lg"
                   variant="outline"
                   asChild
-                  className="px-8 py-6 text-base border-2 hover:bg-primary/5 transition-all duration-300"
+                  className="px-6 py-5 sm:px-8 sm:py-6 text-sm sm:text-base border-2 hover:bg-primary/5 transition-all duration-300 w-full sm:w-auto"
                 >
-                  <a href={siteConfig.resume} download>
+                  <a
+                    href={siteConfig.resume}
+                    download
+                    className="flex items-center justify-center"
+                  >
                     <Download className="mr-2 h-4 w-4" />
                     Download CV
                   </a>
@@ -256,43 +260,38 @@ export function Hero() {
             <FadeContent
               delay={1.4}
               direction="up"
-              className="mt-10 flex gap-5 justify-center lg:justify-start"
+              className="mt-6 sm:mt-10 flex gap-4 sm:gap-5 justify-center lg:justify-start"
             >
-              {[
-                {
-                  icon: Github,
-                  href: siteConfig.links.github,
-                  label: "GitHub",
-                },
-                {
-                  icon: Linkedin,
-                  href: siteConfig.links.linkedin,
-                  label: "LinkedIn",
-                },
-              ].map((social) => (
-                <Magnetic key={social.label} strength={0.4}>
-                  <motion.a
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center w-12 h-12 rounded-full bg-violet-500/10 hover:bg-violet-500/25 text-violet-300 hover:text-white border border-violet-500/40 hover:border-violet-400 transition-all duration-300 shadow-lg shadow-violet-500/10 hover:shadow-violet-500/30"
-                    whileHover={{ scale: 1.15, rotate: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <social.icon className="h-5 w-5" />
-                  </motion.a>
-                </Magnetic>
-              ))}
+              {["GitHub", "LinkedIn"].map((label) => {
+                const social =
+                  label === "GitHub"
+                    ? { icon: Github, href: siteConfig.links.github }
+                    : { icon: Linkedin, href: siteConfig.links.linkedin };
+                return (
+                  <Magnetic key={label} strength={0.4}>
+                    <motion.a
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-violet-500/10 hover:bg-violet-500/25 text-violet-300 hover:text-white border border-violet-500/40 hover:border-violet-400 transition-all duration-300 shadow-lg shadow-violet-500/10 hover:shadow-violet-500/30"
+                      whileHover={{ scale: 1.15, rotate: 5 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <social.icon className="h-4 w-4 sm:h-5 sm:w-5" />
+                    </motion.a>
+                  </Magnetic>
+                );
+              })}
             </FadeContent>
           </div>
 
           {/* Profile Image */}
-          <FadeContent delay={0.5} direction="right" className="shrink-0">
-            <Floating duration={4} distance={15}>
+          <FadeContent delay={0.5} direction="up" className="shrink-0">
+            <Floating duration={4} distance={10}>
               <div className="relative">
                 {/* Cosmic glow effect */}
                 <motion.div
-                  className="absolute -inset-4 bg-linear-to-r from-violet-500/40 via-purple-500/30 to-blue-500/40 rounded-full blur-2xl"
+                  className="absolute -inset-3 sm:-inset-4 bg-linear-to-r from-violet-500/40 via-purple-500/30 to-blue-500/40 rounded-full blur-2xl"
                   animate={{
                     opacity: [0.4, 0.7, 0.4],
                     scale: [1, 1.1, 1],
@@ -312,13 +311,13 @@ export function Hero() {
                     repeat: Infinity,
                     ease: "linear",
                   }}
-                  className="absolute -inset-8 rounded-full border-2 border-dashed border-violet-500/30"
+                  className="absolute -inset-4 sm:-inset-6 lg:-inset-8 rounded-full border-2 border-dashed border-violet-500/30"
                 >
                   {/* Orbiting satellite/star */}
-                  <motion.div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-violet-400 rounded-full star-glow" />
+                  <motion.div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 sm:w-3 sm:h-3 bg-violet-400 rounded-full star-glow" />
                 </motion.div>
 
-                {/* Second orbit ring */}
+                {/* Second orbit ring - hidden on small mobile */}
                 <motion.div
                   animate={{ rotate: -360 }}
                   transition={{
@@ -326,7 +325,7 @@ export function Hero() {
                     repeat: Infinity,
                     ease: "linear",
                   }}
-                  className="absolute -inset-14 rounded-full border border-dotted border-purple-500/20"
+                  className="absolute -inset-8 sm:-inset-10 lg:-inset-14 rounded-full border border-dotted border-purple-500/20 hidden sm:block"
                 >
                   <motion.div
                     className="absolute bottom-0 right-0 w-2 h-2 bg-blue-400 rounded-full"
@@ -335,14 +334,14 @@ export function Hero() {
                 </motion.div>
 
                 {/* Image container - styled like a planet */}
-                <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-violet-500/30 shadow-2xl planet-glow">
+                <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-full overflow-hidden border-4 border-violet-500/30 shadow-2xl planet-glow">
                   <Image
                     src="/profile.jpg"
                     alt={siteConfig.name}
                     fill
                     className="object-cover"
                     priority
-                    sizes="(max-width: 640px) 288px, (max-width: 1024px) 320px, 384px"
+                    sizes="(max-width: 640px) 192px, (max-width: 768px) 256px, (max-width: 1024px) 288px, 384px"
                   />
                   {/* Overlay gradient - cosmic themed */}
                   <div className="absolute inset-0 bg-linear-to-br from-violet-600/20 via-transparent to-blue-600/20 pointer-events-none" />
@@ -360,7 +359,7 @@ export function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2.5, duration: 0.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
+        className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-20"
       >
         <Magnetic strength={0.5}>
           <motion.div

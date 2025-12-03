@@ -218,9 +218,9 @@ export function Navbar() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden overflow-hidden"
+              className="md:hidden overflow-hidden absolute top-full left-0 right-0 bg-[#0a0a1a]/95 backdrop-blur-xl border-b border-violet-500/20 shadow-xl shadow-violet-500/5"
             >
-              <div className="py-4 space-y-1">
+              <div className="py-4 px-4 space-y-1 max-h-[70vh] overflow-y-auto">
                 {navLinks.map((link, index) => {
                   const isActive = activeSection === link.href.replace("#", "");
                   return (
@@ -233,10 +233,10 @@ export function Navbar() {
                       <button
                         onClick={() => handleNavClick(link.href)}
                         className={cn(
-                          "block w-full text-left px-4 py-3 text-sm font-medium rounded-lg transition-all",
+                          "block w-full text-left px-4 py-3 text-sm font-medium rounded-xl transition-all",
                           isActive
-                            ? "text-primary bg-primary/10"
-                            : "text-muted-foreground hover:text-foreground hover:bg-accent"
+                            ? "text-violet-400 bg-violet-500/15 border border-violet-500/30"
+                            : "text-gray-300 hover:text-white hover:bg-violet-500/10"
                         )}
                       >
                         {link.name}
