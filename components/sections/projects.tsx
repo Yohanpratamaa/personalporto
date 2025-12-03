@@ -126,7 +126,7 @@ export function Projects() {
                   {/* Project Info */}
                   <CardHeader className="pb-3">
                     <div className="flex items-start justify-between">
-                      <h3 className="text-xl font-bold group-hover:text-violet-400 transition-colors duration-300">
+                      <h3 className="text-xl font-bold text-white group-hover:text-violet-400 transition-colors duration-300">
                         {project.title}
                       </h3>
                       <ArrowUpRight className="h-5 w-5 text-violet-400/50 opacity-0 group-hover:opacity-100 group-hover:text-violet-400 transition-all duration-300 -translate-x-2 group-hover:translate-x-0" />

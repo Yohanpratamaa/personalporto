@@ -118,7 +118,7 @@ export function Skills() {
                           <category.icon className="h-6 w-6 text-white" />
                         </motion.div>
                       </Magnetic>
-                      <span className="text-xl font-bold">
+                      <span className="text-xl font-bold text-white">
                         {category.title}
                       </span>
                     </CardTitle>
