@@ -2,7 +2,14 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter, Mail, Heart, ArrowUp } from "lucide-react";
+import {
+  Github,
+  Linkedin,
+  Instagram,
+  Mail,
+  Heart,
+  ArrowUp,
+} from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { Button } from "@/components/ui/button";
 
@@ -12,7 +19,7 @@ export function Footer() {
   const socialLinks = [
     { icon: Github, href: siteConfig.links.github, label: "GitHub" },
     { icon: Linkedin, href: siteConfig.links.linkedin, label: "LinkedIn" },
-    { icon: Twitter, href: siteConfig.links.twitter, label: "Twitter" },
+    { icon: Instagram, href: siteConfig.links.instagram, label: "Instagram" },
     { icon: Mail, href: `mailto:${siteConfig.email}`, label: "Email" },
   ];
 

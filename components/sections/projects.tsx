@@ -2,13 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import {
-  ExternalLink,
-  Github,
-  Folder,
-  ArrowUpRight,
-  Rocket,
-} from "lucide-react";
+import { ExternalLink, Github, Folder, ArrowUpRight } from "lucide-react";
 import { SectionWrapper, SectionHeader } from "@/components/section-wrapper";
 import {
   Card,
@@ -80,10 +74,6 @@ export function Projects() {
                       className="object-cover group-hover:scale-110 transition-transform duration-700"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
-                    {/* Fallback gradient */}
-                    <div className="absolute inset-0 bg-linear-to-br from-violet-500/10 via-blue-500/10 to-purple-500/10 flex items-center justify-center">
-                      <Rocket className="h-16 w-16 text-violet-400/30" />
-                    </div>
 
                     {/* Overlay on hover */}
                     <div className="absolute inset-0 bg-linear-to-t from-[#0a0a1a] via-[#0a0a1a]/70 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-4 gap-3">

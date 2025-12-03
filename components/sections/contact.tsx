@@ -6,7 +6,7 @@ import {
   Mail,
   Linkedin,
   Github,
-  MessageCircle,
+  Instagram,
   Send,
   Loader2,
   ArrowUpRight,
@@ -57,12 +57,12 @@ const contactLinks = [
     bgGradient: "from-purple-400/20 to-violet-600/20",
   },
   {
-    icon: MessageCircle,
-    label: "WhatsApp",
-    value: "Chat on WhatsApp",
-    href: siteConfig.links.whatsapp,
-    gradient: "from-emerald-400 to-teal-500",
-    bgGradient: "from-emerald-400/20 to-teal-500/20",
+    icon: Instagram,
+    label: "Instagram",
+    value: "Follow on Instagram",
+    href: siteConfig.links.instagram,
+    gradient: "from-pink-500 to-rose-500",
+    bgGradient: "from-pink-500/20 to-rose-500/20",
   },
 ];
 

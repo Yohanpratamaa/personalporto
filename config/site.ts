@@ -8,8 +8,7 @@ export const siteConfig = {
   links: {
     github: "https://github.com/Yohanpratamaa",
     linkedin: "https://www.linkedin.com/in/yohanpratama26/",
-    twitter: "https://twitter.com/yohanpratama",
-    whatsapp: "https://wa.me/6281234567890",
+    instagram: "https://instagram.com/yohanpratama_",
   },
   resume: "/resume.pdf",
 };
