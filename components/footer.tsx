@@ -120,7 +120,7 @@ export function Footer() {
               href="https://nextjs.org"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-foreground hover:text-primary transition-colors underline-offset-4 hover:underline"
+              className="font-medium text-white hover:text-primary transition-colors underline-offset-4 hover:underline"
             >
               Next.js
             </Link>
@@ -129,18 +129,9 @@ export function Footer() {
               href="https://tailwindcss.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-foreground hover:text-primary transition-colors underline-offset-4 hover:underline"
+              className="font-medium text-white hover:text-primary transition-colors underline-offset-4 hover:underline"
             >
               TailwindCSS
-            </Link>
-            <span>•</span>
-            <Link
-              href="https://ui.shadcn.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-foreground hover:text-primary transition-colors underline-offset-4 hover:underline"
-            >
-              shadcn/ui
             </Link>
           </p>
         </motion.div>

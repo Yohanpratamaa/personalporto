@@ -36,26 +36,17 @@ const skillCategories = [
     badgeColor:
       "bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border-blue-500/30",
   },
-  // {
-  //   title: "AI / ML",
-  //   icon: Brain,
-  //   skills: skills.aiml,
-  //   gradient: "from-purple-500 to-pink-500",
-  //   bgColor: "bg-purple-500/10",
-  //   textColor: "text-purple-400",
-  //   badgeColor:
-  //     "bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 border-purple-500/30",
-  // },
-  // {
-  //   title: "Tools",
-  //   icon: Wrench,
-  //   skills: skills.tools,
-  //   gradient: "from-indigo-500 to-violet-500",
-  //   bgColor: "bg-indigo-500/10",
-  //   textColor: "text-indigo-400",
-  //   badgeColor:
-  //     "bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 border-indigo-500/30",
-  // },
+
+  {
+    title: "Tools",
+    icon: Wrench,
+    skills: skills.tools,
+    gradient: "from-indigo-500 to-violet-500",
+    bgColor: "bg-indigo-500/10",
+    textColor: "text-indigo-400",
+    badgeColor:
+      "bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 border-indigo-500/30",
+  },
 ];
 
 export function Skills() {
@@ -99,11 +90,8 @@ export function Skills() {
           subtitle="The tools and technologies I use to bring ideas to life"
         />
 
-        <StaggerChildren
-          className="grid md:grid-cols-2 gap-6 lg:gap-8"
-          staggerDelay={0.15}
-        >
-          {skillCategories.map((category, categoryIndex) => (
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+          {skillCategories.slice(0, 2).map((category, categoryIndex) => (
             <TiltCard key={category.title} maxTilt={8} scale={1.02}>
               <SpotlightCard spotlightColor="rgba(139, 92, 246, 0.12)">
                 <Card className="h-full border border-violet-500/20 bg-[#0a0a1a]/60 backdrop-blur-sm hover:shadow-xl hover:shadow-violet-500/10 transition-all duration-300 group overflow-hidden">
@@ -157,7 +145,65 @@ export function Skills() {
               </SpotlightCard>
             </TiltCard>
           ))}
-        </StaggerChildren>
+        </div>
+
+        {/* Tools Card - Centered */}
+        <div className="mt-6 lg:mt-8 flex justify-center">
+          <div className="w-full md:w-1/2 lg:w-2/5">
+            <TiltCard maxTilt={8} scale={1.02}>
+              <SpotlightCard spotlightColor="rgba(139, 92, 246, 0.12)">
+                <Card className="h-full border border-violet-500/20 bg-[#0a0a1a]/60 backdrop-blur-sm hover:shadow-xl hover:shadow-violet-500/10 transition-all duration-300 group overflow-hidden">
+                  <CardHeader className="pb-4">
+                    <CardTitle className="flex items-center gap-4 justify-center">
+                      <Magnetic strength={0.2}>
+                        <motion.div
+                          className={`p-3 rounded-xl bg-linear-to-br ${skillCategories[2].gradient} shadow-lg`}
+                          whileHover={{ rotate: 10, scale: 1.1 }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                        >
+                          <Wrench className="h-6 w-6 text-white" />
+                        </motion.div>
+                      </Magnetic>
+                      <span className="text-xl font-bold text-white">
+                        {skillCategories[2].title}
+                      </span>
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex flex-wrap gap-2.5 justify-center">
+                      {skillCategories[2].skills.map((skill, skillIndex) => (
+                        <motion.div
+                          key={skill}
+                          initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{
+                            duration: 0.4,
+                            delay: 0.3 + skillIndex * 0.05,
+                            type: "spring",
+                            stiffness: 200,
+                          }}
+                          whileHover={{
+                            scale: 1.1,
+                            y: -3,
+                            transition: { duration: 0.2 },
+                          }}
+                        >
+                          <Badge
+                            variant="outline"
+                            className={`${skillCategories[2].badgeColor} transition-all duration-200 cursor-default px-3 py-1.5 text-sm font-medium hover:shadow-md`}
+                          >
+                            {skill}
+                          </Badge>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </SpotlightCard>
+            </TiltCard>
+          </div>
+        </div>
 
         {/* Additional Skills Info */}
         <FadeContent
@@ -177,11 +223,11 @@ export function Skills() {
                   </span>
                   ,{" "}
                   <span className="text-purple-400 font-semibold">
-                    Kubernetes
+                    Data Science
                   </span>
                   , and{" "}
                   <span className="text-blue-400 font-semibold">
-                    advanced AI/ML patterns
+                    AI/ML patterns
                   </span>
                   .
                 </p>
