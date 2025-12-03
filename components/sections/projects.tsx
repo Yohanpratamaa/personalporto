@@ -195,22 +195,40 @@ export function Projects() {
         {/* View All Button */}
         <FadeContent delay={0.6} direction="up" className="mt-16 text-center">
           <Magnetic strength={0.2}>
-            <Button
-              variant="outline"
-              size="lg"
-              asChild
-              className="group border-2 border-violet-500/30 px-8 py-6 text-base text-violet-300 hover:bg-violet-600 hover:text-white hover:border-violet-500 transition-all duration-300"
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-block"
             >
-              <a
-                href={siteConfig.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Button
+                size="lg"
+                asChild
+                className="group px-8 py-6 text-base bg-linear-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white shadow-lg shadow-violet-500/25 transition-all duration-300 relative overflow-hidden"
               >
-                <Github className="h-5 w-5 mr-2 group-hover:rotate-12 transition-transform" />
-                View All Projects on GitHub
-                <ArrowUpRight className="h-4 w-4 ml-2 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </a>
-            </Button>
+                <a
+                  href={siteConfig.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {/* Shimmer effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent"
+                    animate={{ x: ["-100%", "100%"] }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatDelay: 3,
+                      ease: "linear",
+                    }}
+                  />
+                  <span className="relative z-10 flex items-center">
+                    <Github className="h-5 w-5 mr-2 group-hover:rotate-12 transition-transform" />
+                    View All Projects on GitHub
+                    <ArrowUpRight className="h-4 w-4 ml-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </span>
+                </a>
+              </Button>
+            </motion.div>
           </Magnetic>
         </FadeContent>
 

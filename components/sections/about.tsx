@@ -1,220 +1,366 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import {
   Code2,
-  Cloud,
   Brain,
   Rocket,
   MapPin,
   GraduationCap,
   Clock,
-  Target,
-  Orbit,
-  Satellite,
-  Star,
   Sparkles,
+  Star,
+  Zap,
+  Heart,
+  Coffee,
+  Gamepad2,
 } from "lucide-react";
 import { SectionWrapper, SectionHeader } from "@/components/section-wrapper";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { siteConfig } from "@/config/site";
 import {
   FadeContent,
   TiltCard,
   SpotlightCard,
   Counter,
-  StaggerChildren,
-  Reveal,
   Magnetic,
+  Floating,
+  Reveal,
 } from "@/components/ui/animations";
 
-const interests = [
-  {
-    icon: Code2,
-    title: "Web Development",
-    description:
-      "Building modern, responsive web applications with cutting-edge technologies.",
-    gradient: "from-violet-500 to-purple-500",
-  },
-  {
-    icon: Brain,
-    title: "Artificial Intelligence",
-    description:
-      "Exploring machine learning and AI to create intelligent solutions.",
-    gradient: "from-purple-500 to-pink-500",
-  },
-  {
-    icon: Cloud,
-    title: "Cloud Computing",
-    description:
-      "Leveraging cloud platforms for scalable and reliable applications.",
-    gradient: "from-blue-500 to-cyan-500",
-  },
-  {
-    icon: Rocket,
-    title: "Innovation",
-    description:
-      "Passionate about learning new technologies and solving complex problems.",
-    gradient: "from-indigo-500 to-violet-500",
-  },
+const stats = [
+  { value: 2, suffix: "+", label: "Years Learning", icon: Clock },
+  { value: 10, suffix: "+", label: "Projects Built", icon: Rocket },
+  { value: 5, suffix: "+", label: "Technologies", icon: Zap },
+  { value: 100, suffix: "%", label: "Passion", icon: Heart },
 ];
 
-const quickFacts = [
-  { icon: MapPin, label: "Location", value: "Indonesia" },
-  { icon: GraduationCap, label: "Education", value: "System Information" },
-  { icon: Clock, label: "Experience", value: 2, suffix: "+ Years" },
-  { icon: Target, label: "Focus", value: "Web & AI" },
+const techStack = [
+  "React",
+  "Next.js",
+  "TypeScript",
+  "Node.js",
+  "Python",
+  "TailwindCSS",
+  "PostgreSQL",
+  "Git",
+];
+
+const hobbies = [
+  { icon: Code2, label: "Coding" },
+  { icon: Coffee, label: "Coffee" },
+  { icon: Gamepad2, label: "Gaming" },
+  { icon: Brain, label: "Learning" },
 ];
 
 export function About() {
   return (
     <SectionWrapper id="about" className="relative overflow-hidden">
-      {/* Space-themed background */}
-      <div className="absolute inset-0 bg-linear-to-b from-violet-900/5 via-transparent to-blue-900/5" />
+      {/* Space nebula background */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-linear-to-b from-violet-900/10 via-transparent to-blue-900/10" />
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
+          transition={{ duration: 15, repeat: Infinity }}
+          className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] bg-violet-500/10 rounded-full blur-[120px]"
+        />
+        <motion.div
+          animate={{ scale: [1, 1.3, 1], opacity: [0.1, 0.15, 0.1] }}
+          transition={{ duration: 20, repeat: Infinity, delay: 5 }}
+          className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px]"
+        />
+      </div>
 
-      {/* Floating space elements */}
-      <motion.div
-        animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
-        transition={{ duration: 8, repeat: Infinity }}
-        className="absolute top-20 right-[10%] w-3 h-3 bg-violet-400 rounded-full star-glow opacity-60"
-      />
-      <motion.div
-        animate={{ y: [0, 15, 0], x: [0, -10, 0] }}
-        transition={{ duration: 10, repeat: Infinity, delay: 2 }}
-        className="absolute bottom-40 left-[5%] w-2 h-2 bg-blue-400 rounded-full star-glow opacity-50"
-      />
+      {/* Floating stars */}
+      {[
+        { top: "10%", left: "5%", size: 2, delay: 0 },
+        { top: "20%", right: "10%", size: 3, delay: 1 },
+        { top: "60%", left: "8%", size: 2, delay: 2 },
+        { top: "80%", right: "15%", size: 2, delay: 1.5 },
+        { top: "40%", right: "5%", size: 1.5, delay: 0.5 },
+      ].map((star, i) => (
+        <motion.div
+          key={i}
+          className="absolute rounded-full bg-white"
+          style={{
+            top: star.top,
+            left: star.left,
+            right: star.right,
+            width: `${star.size * 4}px`,
+            height: `${star.size * 4}px`,
+          }}
+          animate={{ opacity: [0.2, 1, 0.2], scale: [0.8, 1.2, 0.8] }}
+          transition={{ duration: 3, repeat: Infinity, delay: star.delay }}
+        />
+      ))}
 
       <div className="relative">
         <SectionHeader
           title="About Me"
-          subtitle="Get to know more about who I am and what drives me"
+          subtitle="Exploring the universe of technology, one project at a time"
         />
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          {/* Bio Section */}
-          <FadeContent direction="left" blur>
-            <SpotlightCard spotlightColor="rgba(139, 92, 246, 0.15)">
-              <Card className="border border-violet-500/20 shadow-xl bg-[#0a0a1a]/60 backdrop-blur-sm overflow-hidden">
-                <CardContent className="p-8 sm:p-10">
-                  <Reveal delay={0.2}>
-                    <h3 className="text-2xl sm:text-3xl font-bold mb-6 bg-linear-to-r from-violet-300 via-purple-300 to-blue-300 bg-clip-text text-transparent">
-                      Hello! I&apos;m {siteConfig.name}
-                    </h3>
-                  </Reveal>
-                  <div className="space-y-5 text-muted-foreground leading-relaxed">
-                    <FadeContent delay={0.3} direction="up">
-                      <p>
-                        I&apos;m a passionate{" "}
-                        <span className="text-violet-400 font-semibold">
-                          System Information student
-                        </span>{" "}
-                        with a deep interest in technology and innovation. My
-                        journey in tech started with curiosity about how digital
-                        solutions can transform the way we live and work.
-                      </p>
-                    </FadeContent>
-                    <FadeContent delay={0.4} direction="up">
-                      <p>
-                        Currently, I&apos;m focused on{" "}
-                        <span className="text-violet-400 font-semibold">
-                          full-stack web development
-                        </span>
-                        , exploring the realms of{" "}
-                        <span className="text-purple-400 font-semibold">
-                          artificial intelligence
-                        </span>
-                        , and understanding{" "}
-                        <span className="text-blue-400 font-semibold">
-                          cloud infrastructure
-                        </span>
-                        . I believe in continuous learning and applying
-                        knowledge to create meaningful projects.
-                      </p>
-                    </FadeContent>
-                    <FadeContent delay={0.5} direction="up">
-                      <p>
-                        When I&apos;m not coding, you can find me participating
-                        in hackathons, contributing to open-source projects, or
-                        exploring the latest tech trends.
-                      </p>
-                    </FadeContent>
-                  </div>
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+          {/* Left Column - Profile Image & Stats */}
+          <div className="lg:col-span-5 space-y-8">
+            {/* Profile Image with Space Theme */}
+            <FadeContent direction="left" blur>
+              <div className="relative flex justify-center">
+                <Floating duration={5} distance={10}>
+                  <div className="relative">
+                    {/* Outer glow ring */}
+                    <motion.div
+                      className="absolute -inset-4 rounded-full bg-linear-to-r from-violet-500/40 via-purple-500/30 to-blue-500/40 blur-xl"
+                      animate={{
+                        opacity: [0.4, 0.7, 0.4],
+                        scale: [0.95, 1.05, 0.95],
+                      }}
+                      transition={{ duration: 4, repeat: Infinity }}
+                    />
 
-                  {/* Quick Facts with Counter Animation */}
-                  <div className="mt-8 pt-8 border-t border-violet-500/20 grid grid-cols-2 gap-6">
-                    {quickFacts.map((fact, index) => (
-                      <FadeContent
-                        key={fact.label}
-                        delay={0.6 + index * 0.1}
-                        direction="up"
-                      >
-                        <Magnetic strength={0.15}>
-                          <div className="flex items-center gap-3 group cursor-default">
-                            <div className="p-2 rounded-lg bg-violet-500/10 group-hover:bg-violet-500/20 group-hover:scale-110 transition-all duration-300">
-                              <fact.icon className="h-4 w-4 text-violet-400" />
+                    {/* Orbiting ring 1 */}
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{
+                        duration: 20,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                      className="absolute -inset-8 rounded-full border-2 border-dashed border-violet-500/30"
+                    >
+                      <div className="absolute top-1/2 -left-2 w-4 h-4 bg-violet-400 rounded-full shadow-lg shadow-violet-500/50" />
+                    </motion.div>
+
+                    {/* Orbiting ring 2 */}
+                    <motion.div
+                      animate={{ rotate: -360 }}
+                      transition={{
+                        duration: 30,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                      className="absolute -inset-14 rounded-full border border-dotted border-purple-500/20"
+                    >
+                      <div className="absolute bottom-4 right-4 w-3 h-3 bg-blue-400 rounded-full shadow-lg shadow-blue-500/50" />
+                    </motion.div>
+
+                    {/* Main image container */}
+                    <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-full overflow-hidden border-4 border-violet-500/40 shadow-2xl shadow-violet-500/20">
+                      <Image
+                        src="/profile.jpg"
+                        alt={siteConfig.name}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 256px, 288px"
+                      />
+                      {/* Fallback gradient */}
+                      <div className="absolute inset-0 bg-linear-to-br from-violet-600/40 via-purple-500/30 to-blue-600/40 flex items-center justify-center">
+                        <span className="text-6xl font-bold text-white/70">
+                          {siteConfig.name.charAt(0)}
+                        </span>
+                      </div>
+                      {/* Overlay glow */}
+                      <div className="absolute inset-0 bg-linear-to-t from-violet-900/30 via-transparent to-white/5" />
+                    </div>
+
+                    {/* Floating badge */}
+                    <motion.div
+                      animate={{ y: [0, -8, 0] }}
+                      transition={{ duration: 3, repeat: Infinity }}
+                      className="absolute -bottom-2 left-1/2 -translate-x-1/2"
+                    >
+                      <Badge className="bg-linear-to-r from-violet-600 to-purple-600 text-white border-0 px-4 py-1.5 shadow-lg shadow-violet-500/30">
+                        <Sparkles className="w-3 h-3 mr-1.5" />
+                        Open to Work
+                      </Badge>
+                    </motion.div>
+                  </div>
+                </Floating>
+              </div>
+            </FadeContent>
+
+            {/* Stats Grid */}
+            <FadeContent delay={0.3} direction="up">
+              <div className="grid grid-cols-2 gap-4">
+                {stats.map((stat, index) => (
+                  <Magnetic key={stat.label} strength={0.1}>
+                    <motion.div
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className="relative p-4 rounded-2xl bg-[#0a0a1a]/60 border border-violet-500/20 backdrop-blur-sm group cursor-default overflow-hidden"
+                    >
+                      {/* Hover glow */}
+                      <div className="absolute inset-0 bg-linear-to-br from-violet-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                      <div className="relative flex items-center gap-3">
+                        <div className="p-2 rounded-lg bg-violet-500/20 group-hover:bg-violet-500/30 transition-colors">
+                          <stat.icon className="w-4 h-4 text-violet-400" />
+                        </div>
+                        <div>
+                          <div className="text-2xl font-bold text-white">
+                            <Counter
+                              value={stat.value}
+                              delay={0.5 + index * 0.1}
+                            />
+                            <span className="text-violet-400">
+                              {stat.suffix}
+                            </span>
+                          </div>
+                          <p className="text-xs text-gray-400">{stat.label}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </Magnetic>
+                ))}
+              </div>
+            </FadeContent>
+          </div>
+
+          {/* Right Column - Bio & Details */}
+          <div className="lg:col-span-7 space-y-6">
+            {/* Main Bio Card */}
+            <FadeContent direction="right" blur>
+              <TiltCard maxTilt={5} scale={1.01}>
+                <SpotlightCard spotlightColor="rgba(139, 92, 246, 0.15)">
+                  <Card className="border border-violet-500/20 bg-[#0a0a1a]/60 backdrop-blur-sm overflow-hidden">
+                    {/* Gradient top border */}
+                    <motion.div
+                      className="h-1 bg-linear-to-r from-violet-500 via-purple-500 to-blue-500"
+                      initial={{ scaleX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8 }}
+                      style={{ transformOrigin: "left" }}
+                    />
+
+                    <CardContent className="p-6 sm:p-8">
+                      <Reveal>
+                        <div className="flex items-center gap-3 mb-6">
+                          <motion.div
+                            animate={{ rotate: [0, 10, -10, 0] }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              repeatDelay: 3,
+                            }}
+                            className="text-4xl"
+                          >
+                            👋
+                          </motion.div>
+                          <h3 className="text-2xl sm:text-3xl font-bold bg-linear-to-r from-violet-300 via-purple-300 to-blue-300 bg-clip-text text-transparent">
+                            Hello, I&apos;m {siteConfig.name}!
+                          </h3>
+                        </div>
+                      </Reveal>
+
+                      <div className="space-y-4 text-gray-300 leading-relaxed">
+                        <FadeContent delay={0.2} direction="up">
+                          <p>
+                            I&apos;m a passionate{" "}
+                            <span className="text-violet-400 font-semibold">
+                              System Information student
+                            </span>{" "}
+                            on a mission to explore the vast universe of
+                            technology. My journey began with curiosity and has
+                            evolved into a deep love for creating digital
+                            experiences.
+                          </p>
+                        </FadeContent>
+
+                        <FadeContent delay={0.3} direction="up">
+                          <p>
+                            Currently orbiting around{" "}
+                            <span className="text-violet-400 font-semibold">
+                              full-stack web development
+                            </span>
+                            , with satellites exploring{" "}
+                            <span className="text-purple-400 font-semibold">
+                              artificial intelligence
+                            </span>{" "}
+                            and{" "}
+                            <span className="text-blue-400 font-semibold">
+                              cloud infrastructure
+                            </span>
+                            . I believe every line of code is a step towards
+                            building something extraordinary.
+                          </p>
+                        </FadeContent>
+
+                        <FadeContent delay={0.4} direction="up">
+                          <p className="text-gray-400">
+                            When I&apos;m not coding, you&apos;ll find me
+                            participating in hackathons, contributing to
+                            open-source galaxies, or stargazing at the latest
+                            tech trends. 🚀
+                          </p>
+                        </FadeContent>
+                      </div>
+
+                      {/* Quick Info */}
+                      <FadeContent delay={0.5} direction="up">
+                        <div className="mt-6 pt-6 border-t border-violet-500/20 grid grid-cols-2 gap-4">
+                          <div className="flex items-center gap-3">
+                            <div className="p-2 rounded-lg bg-violet-500/20">
+                              <MapPin className="w-4 h-4 text-violet-400" />
                             </div>
                             <div>
-                              <span className="text-xs text-muted-foreground block">
-                                {fact.label}
-                              </span>
-                              <p className="font-semibold text-sm">
-                                {typeof fact.value === "number" ? (
-                                  <>
-                                    <Counter
-                                      value={fact.value}
-                                      delay={0.8 + index * 0.1}
-                                    />
-                                    {fact.suffix}
-                                  </>
-                                ) : (
-                                  fact.value
-                                )}
+                              <p className="text-xs text-gray-500">Location</p>
+                              <p className="text-sm font-medium text-white">
+                                Indonesia 🇮🇩
                               </p>
                             </div>
                           </div>
-                        </Magnetic>
+                          <div className="flex items-center gap-3">
+                            <div className="p-2 rounded-lg bg-purple-500/20">
+                              <GraduationCap className="w-4 h-4 text-purple-400" />
+                            </div>
+                            <div>
+                              <p className="text-xs text-gray-500">Education</p>
+                              <p className="text-sm font-medium text-white">
+                                System Information
+                              </p>
+                            </div>
+                          </div>
+                        </div>
                       </FadeContent>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </SpotlightCard>
-          </FadeContent>
-
-          {/* Interests Grid */}
-          <StaggerChildren
-            className="grid sm:grid-cols-2 gap-5"
-            staggerDelay={0.15}
-          >
-            {interests.map((interest) => (
-              <TiltCard key={interest.title} maxTilt={10} scale={1.03}>
-                <SpotlightCard spotlightColor="rgba(139, 92, 246, 0.12)">
-                  <Card className="h-full border border-violet-500/20 bg-[#0a0a1a]/60 backdrop-blur-sm hover:shadow-xl hover:shadow-violet-500/10 transition-all duration-300 group overflow-hidden">
-                    <CardContent className="p-6 relative">
-                      {/* Gradient overlay on hover */}
-                      <div
-                        className={`absolute inset-0 bg-linear-to-br ${interest.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
-                      />
-
-                      <motion.div
-                        className={`w-14 h-14 rounded-xl bg-linear-to-br ${interest.gradient} flex items-center justify-center mb-5 shadow-lg`}
-                        whileHover={{ scale: 1.15, rotate: 5 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                      >
-                        <interest.icon className="h-7 w-7 text-white" />
-                      </motion.div>
-                      <h4 className="font-bold text-lg mb-2 group-hover:text-violet-400 transition-colors">
-                        {interest.title}
-                      </h4>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        {interest.description}
-                      </p>
                     </CardContent>
                   </Card>
                 </SpotlightCard>
               </TiltCard>
-            ))}
-          </StaggerChildren>
+            </FadeContent>
+
+            {/* Hobbies */}
+            <FadeContent delay={0.5} direction="up">
+              <div className="p-6 rounded-2xl bg-[#0a0a1a]/60 border border-violet-500/20 backdrop-blur-sm">
+                <div className="flex items-center gap-2 mb-4">
+                  <Star className="w-5 h-5 text-purple-400" />
+                  <h4 className="font-semibold text-white">
+                    When I&apos;m Not Coding
+                  </h4>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  {hobbies.map((hobby, index) => (
+                    <Magnetic key={hobby.label} strength={0.2}>
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.6 + index * 0.1 }}
+                        whileHover={{ scale: 1.05 }}
+                        className="flex items-center gap-2 px-4 py-2 rounded-full bg-linear-to-r from-violet-500/10 to-purple-500/10 border border-violet-500/30 cursor-default"
+                      >
+                        <hobby.icon className="w-4 h-4 text-violet-400" />
+                        <span className="text-sm text-gray-300">
+                          {hobby.label}
+                        </span>
+                      </motion.div>
+                    </Magnetic>
+                  ))}
+                </div>
+              </div>
+            </FadeContent>
+          </div>
         </div>
       </div>
     </SectionWrapper>

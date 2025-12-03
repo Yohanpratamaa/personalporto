@@ -169,7 +169,11 @@ export function Hero() {
             </FadeContent>
 
             <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]">
-              <BlurText text="Hi, I'm" className="mb-2" delay={0.3} />
+              <BlurText
+                text="Hi, I'm"
+                className="mb-2 text-white"
+                delay={0.3}
+              />
               <div className="relative inline-block">
                 <GradientText
                   className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold"
