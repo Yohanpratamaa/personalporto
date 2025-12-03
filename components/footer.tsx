@@ -21,9 +21,10 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative border-t border-border/50 bg-background/50 backdrop-blur-sm">
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-linear-to-t from-muted/30 to-transparent pointer-events-none" />
+    <footer className="relative border-t border-violet-500/10 bg-[#0a0a1a]/80 backdrop-blur-sm">
+      {/* Space-themed background decoration */}
+      <div className="absolute inset-0 bg-linear-to-t from-violet-900/10 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-space-stars opacity-20 pointer-events-none" />
 
       <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12">
         {/* Main Footer Content */}
@@ -42,7 +43,7 @@ export function Footer() {
                 e.preventDefault();
                 scrollToTop();
               }}
-              className="inline-block text-2xl font-bold bg-linear-to-r from-primary to-primary/60 bg-clip-text text-transparent mb-2"
+              className="inline-block text-2xl font-bold bg-linear-to-r from-violet-400 via-purple-400 to-blue-400 bg-clip-text text-transparent mb-2"
             >
               {siteConfig.name}
             </Link>
@@ -72,7 +73,7 @@ export function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-muted/50 text-muted-foreground hover:bg-primary/10 hover:text-primary transition-all duration-300 border border-transparent hover:border-primary/20"
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-violet-500/10 text-muted-foreground hover:bg-violet-500/20 hover:text-violet-400 transition-all duration-300 border border-violet-500/20 hover:border-violet-500/40"
                   aria-label={social.label}
                 >
                   <social.icon className="h-5 w-5" />
@@ -92,7 +93,7 @@ export function Footer() {
               variant="outline"
               size="icon"
               onClick={scrollToTop}
-              className="rounded-full border-border/50 hover:border-primary/50 hover:bg-primary/10 hover:text-primary transition-all duration-300"
+              className="rounded-full border-violet-500/30 hover:border-violet-500/50 hover:bg-violet-500/10 hover:text-violet-400 transition-all duration-300"
               aria-label="Scroll to top"
             >
               <ArrowUp className="h-5 w-5" />

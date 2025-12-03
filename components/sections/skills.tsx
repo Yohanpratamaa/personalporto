@@ -20,21 +20,21 @@ const skillCategories = [
     title: "Frontend",
     icon: Code2,
     skills: skills.frontend,
-    gradient: "from-blue-500 to-cyan-500",
-    bgColor: "bg-blue-500/10",
-    textColor: "text-blue-600 dark:text-blue-400",
+    gradient: "from-violet-500 to-purple-500",
+    bgColor: "bg-violet-500/10",
+    textColor: "text-violet-400",
     badgeColor:
-      "bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/30",
+      "bg-violet-500/10 hover:bg-violet-500/20 text-violet-400 border-violet-500/30",
   },
   {
     title: "Backend",
     icon: Server,
     skills: skills.backend,
-    gradient: "from-green-500 to-emerald-500",
-    bgColor: "bg-green-500/10",
-    textColor: "text-green-600 dark:text-green-400",
+    gradient: "from-blue-500 to-cyan-500",
+    bgColor: "bg-blue-500/10",
+    textColor: "text-blue-400",
     badgeColor:
-      "bg-green-500/10 hover:bg-green-500/20 text-green-600 dark:text-green-400 border-green-500/30",
+      "bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border-blue-500/30",
   },
   {
     title: "AI / ML",
@@ -42,44 +42,56 @@ const skillCategories = [
     skills: skills.aiml,
     gradient: "from-purple-500 to-pink-500",
     bgColor: "bg-purple-500/10",
-    textColor: "text-purple-600 dark:text-purple-400",
+    textColor: "text-purple-400",
     badgeColor:
-      "bg-purple-500/10 hover:bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30",
+      "bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 border-purple-500/30",
   },
   {
     title: "Tools",
     icon: Wrench,
     skills: skills.tools,
-    gradient: "from-orange-500 to-red-500",
-    bgColor: "bg-orange-500/10",
-    textColor: "text-orange-600 dark:text-orange-400",
+    gradient: "from-indigo-500 to-violet-500",
+    bgColor: "bg-indigo-500/10",
+    textColor: "text-indigo-400",
     badgeColor:
-      "bg-orange-500/10 hover:bg-orange-500/20 text-orange-600 dark:text-orange-400 border-orange-500/30",
+      "bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 border-indigo-500/30",
   },
 ];
 
 export function Skills() {
   return (
     <SectionWrapper id="skills" className="relative">
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-linear-to-b from-background via-muted/30 to-background" />
+      {/* Space-themed background */}
+      <div className="absolute inset-0 bg-linear-to-b from-purple-900/5 via-transparent to-blue-900/5" />
 
-      {/* Floating decorative elements */}
+      {/* Floating space elements */}
       <Floating
-        duration={4}
+        duration={6}
+        distance={20}
+        className="absolute top-20 left-10 opacity-30"
+      >
+        <div className="w-20 h-20 rounded-full bg-linear-to-br from-violet-500 to-purple-500 blur-2xl" />
+      </Floating>
+      <Floating
+        duration={8}
         distance={15}
-        className="absolute top-20 left-10 opacity-20"
-      >
-        <div className="w-20 h-20 rounded-full bg-linear-to-br from-blue-500 to-cyan-500 blur-2xl" />
-      </Floating>
-      <Floating
-        duration={5}
-        distance={12}
         delay={1}
-        className="absolute bottom-20 right-10 opacity-20"
+        className="absolute bottom-20 right-10 opacity-30"
       >
-        <div className="w-24 h-24 rounded-full bg-linear-to-br from-purple-500 to-pink-500 blur-2xl" />
+        <div className="w-24 h-24 rounded-full bg-linear-to-br from-blue-500 to-cyan-500 blur-2xl" />
       </Floating>
+
+      {/* Twinkling stars */}
+      <motion.div
+        animate={{ opacity: [0.3, 1, 0.3] }}
+        transition={{ duration: 3, repeat: Infinity }}
+        className="absolute top-[15%] right-[20%] w-1.5 h-1.5 bg-white rounded-full"
+      />
+      <motion.div
+        animate={{ opacity: [0.5, 1, 0.5] }}
+        transition={{ duration: 4, repeat: Infinity, delay: 1 }}
+        className="absolute bottom-[30%] left-[15%] w-1 h-1 bg-white rounded-full"
+      />
 
       <div className="relative">
         <SectionHeader
@@ -93,8 +105,8 @@ export function Skills() {
         >
           {skillCategories.map((category, categoryIndex) => (
             <TiltCard key={category.title} maxTilt={8} scale={1.02}>
-              <SpotlightCard>
-                <Card className="h-full border border-border/50 bg-background/80 backdrop-blur-sm hover:shadow-xl transition-all duration-300 group overflow-hidden">
+              <SpotlightCard spotlightColor="rgba(139, 92, 246, 0.12)">
+                <Card className="h-full border border-violet-500/20 bg-[#0a0a1a]/60 backdrop-blur-sm hover:shadow-xl hover:shadow-violet-500/10 transition-all duration-300 group overflow-hidden">
                   <CardHeader className="pb-4">
                     <CardTitle className="flex items-center gap-4">
                       <Magnetic strength={0.2}>
@@ -155,18 +167,20 @@ export function Skills() {
           className="mt-16 text-center"
         >
           <Magnetic strength={0.1}>
-            <Card className="inline-block border border-border/50 bg-background/80 backdrop-blur-sm hover:shadow-lg transition-all duration-300">
+            <Card className="inline-block border border-violet-500/20 bg-[#0a0a1a]/60 backdrop-blur-sm hover:shadow-lg hover:shadow-violet-500/10 transition-all duration-300">
               <CardContent className="px-8 py-6">
                 <p className="text-muted-foreground max-w-2xl">
                   I&apos;m constantly learning and expanding my skill set.
                   Currently exploring{" "}
-                  <span className="text-primary font-semibold">
+                  <span className="text-violet-400 font-semibold">
                     Web3 technologies
                   </span>
                   ,{" "}
-                  <span className="text-primary font-semibold">Kubernetes</span>
+                  <span className="text-purple-400 font-semibold">
+                    Kubernetes
+                  </span>
                   , and{" "}
-                  <span className="text-primary font-semibold">
+                  <span className="text-blue-400 font-semibold">
                     advanced AI/ML patterns
                   </span>
                   .

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Trophy, Briefcase, Award, Users, Calendar } from "lucide-react";
+import { Trophy, Briefcase, Award, Users, Calendar, Star } from "lucide-react";
 import { SectionWrapper, SectionHeader } from "@/components/section-wrapper";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -21,28 +21,42 @@ const typeIcons = {
 };
 
 const typeGradients = {
-  achievement: "from-yellow-500 to-orange-500",
-  internship: "from-blue-500 to-cyan-500",
-  certification: "from-green-500 to-emerald-500",
-  leadership: "from-purple-500 to-pink-500",
+  achievement: "from-amber-400 to-yellow-500",
+  internship: "from-violet-500 to-purple-500",
+  certification: "from-emerald-400 to-teal-500",
+  leadership: "from-blue-400 to-indigo-500",
 };
 
 const typeColors = {
-  achievement:
-    "bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 border-yellow-500/30",
-  internship:
-    "bg-blue-500/10 text-blue-600 dark:text-blue-400 border-blue-500/30",
-  certification:
-    "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/30",
-  leadership:
-    "bg-purple-500/10 text-purple-600 dark:text-purple-400 border-purple-500/30",
+  achievement: "bg-amber-500/10 text-amber-400 border-amber-500/30",
+  internship: "bg-violet-500/10 text-violet-400 border-violet-500/30",
+  certification: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
+  leadership: "bg-blue-500/10 text-blue-400 border-blue-500/30",
 };
 
 export function Experience() {
   return (
-    <SectionWrapper id="experience" className="relative">
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-linear-to-b from-background via-muted/30 to-background" />
+    <SectionWrapper id="experience" className="relative overflow-hidden">
+      {/* Space-themed background */}
+      <div className="absolute inset-0 bg-linear-to-b from-purple-900/5 via-transparent to-blue-900/5" />
+
+      {/* Floating space elements */}
+      <motion.div
+        animate={{ opacity: [0.3, 0.8, 0.3] }}
+        transition={{ duration: 4, repeat: Infinity }}
+        className="absolute top-20 right-[10%] w-2 h-2 bg-violet-400 rounded-full"
+        style={{ boxShadow: "0 0 10px rgba(139, 92, 246, 0.5)" }}
+      />
+      <motion.div
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 5, repeat: Infinity }}
+        className="absolute bottom-[30%] left-[5%] w-3 h-3 bg-linear-to-br from-purple-400 to-blue-400 rounded-full opacity-40"
+      />
+      <motion.div
+        animate={{ opacity: [0.2, 0.6, 0.2] }}
+        transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+        className="absolute top-[40%] right-[3%] w-1.5 h-1.5 bg-blue-400 rounded-full"
+      />
 
       <div className="relative">
         <SectionHeader
@@ -53,7 +67,7 @@ export function Experience() {
         <div className="max-w-4xl mx-auto">
           {/* Timeline */}
           <div className="relative">
-            {/* Animated Timeline line */}
+            {/* Animated Timeline line - space themed */}
             <motion.div
               className="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 md:-translate-x-1/2 origin-top"
               initial={{ scaleY: 0, opacity: 0 }}
@@ -61,7 +75,7 @@ export function Experience() {
               viewport={{ once: true }}
               transition={{ duration: 1.5, ease: "easeOut" }}
             >
-              <div className="h-full bg-linear-to-b from-primary/50 via-blue-500/50 to-purple-500/50" />
+              <div className="h-full bg-linear-to-b from-violet-500/60 via-purple-500/60 to-blue-500/60" />
             </motion.div>
 
             {experiences.map((experience, index) => {
@@ -93,7 +107,8 @@ export function Experience() {
                       type: "spring",
                       stiffness: 200,
                     }}
-                    className={`absolute left-0 md:left-1/2 w-12 h-12 rounded-full bg-linear-to-br ${gradient} flex items-center justify-center md:-translate-x-1/2 shadow-lg ring-4 ring-background z-10`}
+                    className={`absolute left-0 md:left-1/2 w-12 h-12 rounded-full bg-linear-to-br ${gradient} flex items-center justify-center md:-translate-x-1/2 shadow-lg ring-4 ring-[#0a0a1a] z-10`}
+                    style={{ boxShadow: "0 0 20px rgba(139, 92, 246, 0.3)" }}
                   >
                     {/* Pulse ring effect */}
                     <motion.div
@@ -114,9 +129,9 @@ export function Experience() {
                     direction={isLeft ? "left" : "right"}
                   >
                     <Magnetic strength={0.08}>
-                      <SpotlightCard>
+                      <SpotlightCard spotlightColor="rgba(139, 92, 246, 0.12)">
                         <Card
-                          className={`border border-border/50 bg-background/80 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl transition-all duration-300 ${
+                          className={`border border-violet-500/20 bg-[#0a0a1a]/60 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl hover:shadow-violet-500/10 hover:border-violet-500/30 transition-all duration-300 ${
                             isLeft ? "md:mr-6" : "md:ml-6"
                           }`}
                         >
@@ -144,24 +159,24 @@ export function Experience() {
                                     experience.type.slice(1)}
                                 </Badge>
                               </motion.div>
-                              <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                              <span className="flex items-center gap-1.5 text-sm text-gray-400">
                                 <Calendar className="h-3.5 w-3.5" />
                                 {experience.date}
                               </span>
                             </div>
 
                             <Reveal delay={index * 0.1 + 0.2}>
-                              <h3 className="text-xl font-bold">
+                              <h3 className="text-xl font-bold text-white">
                                 {experience.title}
                               </h3>
                             </Reveal>
 
-                            <p className="text-sm font-medium text-primary">
+                            <p className="text-sm font-medium text-violet-400">
                               {experience.organization}
                             </p>
 
                             <p
-                              className={`text-muted-foreground text-sm leading-relaxed ${
+                              className={`text-gray-400 text-sm leading-relaxed ${
                                 isLeft ? "md:text-right" : ""
                               }`}
                             >

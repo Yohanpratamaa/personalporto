@@ -56,7 +56,7 @@ export function Navbar() {
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         scrolled
-          ? "bg-background/70 backdrop-blur-xl border-b border-border/50 shadow-lg shadow-background/5"
+          ? "bg-[#0a0a1a]/80 backdrop-blur-xl border-b border-violet-500/10 shadow-lg shadow-violet-500/5"
           : "bg-transparent"
       )}
     >
@@ -76,10 +76,10 @@ export function Navbar() {
               }}
               className="relative group"
             >
-              <span className="text-xl lg:text-2xl font-bold bg-linear-to-r from-primary via-primary to-primary/60 bg-clip-text text-transparent">
+              <span className="text-xl lg:text-2xl font-bold bg-linear-to-r from-violet-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">
                 {siteConfig.name}
               </span>
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-linear-to-r from-primary to-primary/60 group-hover:w-full transition-all duration-300" />
+              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-linear-to-r from-violet-500 to-blue-500 group-hover:w-full transition-all duration-300" />
             </Link>
           </motion.div>
 
@@ -99,15 +99,15 @@ export function Navbar() {
                     className={cn(
                       "relative px-4 py-2 text-sm font-medium transition-colors rounded-full",
                       isActive
-                        ? "text-primary"
-                        : "text-muted-foreground hover:text-foreground"
+                        ? "text-violet-400"
+                        : "text-muted-foreground hover:text-white"
                     )}
                   >
                     {link.name}
                     {isActive && (
                       <motion.span
                         layoutId="navbar-indicator"
-                        className="absolute inset-0 bg-primary/10 rounded-full -z-10"
+                        className="absolute inset-0 bg-violet-500/15 border border-violet-500/20 rounded-full -z-10"
                         transition={{
                           type: "spring",
                           bounce: 0.2,
@@ -131,7 +131,7 @@ export function Navbar() {
                 variant="ghost"
                 size="icon"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="relative rounded-full hover:bg-accent/50 overflow-hidden"
+                className="relative rounded-full hover:bg-violet-500/10 overflow-hidden"
               >
                 <AnimatePresence mode="wait" initial={false}>
                   {mounted && theme === "dark" ? (
@@ -142,7 +142,7 @@ export function Navbar() {
                       exit={{ y: 20, opacity: 0, rotate: 90 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <Sun className="h-5 w-5" />
+                      <Sun className="h-5 w-5 text-yellow-400" />
                     </motion.div>
                   ) : (
                     <motion.div

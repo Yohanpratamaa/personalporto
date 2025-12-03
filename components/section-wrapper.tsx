@@ -46,11 +46,11 @@ export function SectionHeader({
         transition={{ duration: 0.5 }}
         className="inline-block"
       >
-        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl bg-linear-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl bg-linear-to-r from-violet-300 via-purple-300 to-blue-300 bg-clip-text text-transparent">
           {title}
         </h2>
         <motion.div
-          className="mt-4 mx-auto h-1 bg-linear-to-r from-primary via-blue-500 to-purple-500 rounded-full"
+          className="mt-4 mx-auto h-1 bg-linear-to-r from-violet-500 via-purple-500 to-blue-500 rounded-full"
           initial={{ width: 0 }}
           whileInView={{ width: "100px" }}
           viewport={{ once: true }}

@@ -37,32 +37,32 @@ const contactLinks = [
     label: "Email",
     value: siteConfig.email,
     href: `mailto:${siteConfig.email}`,
-    gradient: "from-red-500 to-orange-500",
-    bgGradient: "from-red-500/20 to-orange-500/20",
+    gradient: "from-violet-500 to-purple-500",
+    bgGradient: "from-violet-500/20 to-purple-500/20",
   },
   {
     icon: Linkedin,
     label: "LinkedIn",
     value: "Connect on LinkedIn",
     href: siteConfig.links.linkedin,
-    gradient: "from-blue-500 to-cyan-500",
-    bgGradient: "from-blue-500/20 to-cyan-500/20",
+    gradient: "from-blue-400 to-indigo-500",
+    bgGradient: "from-blue-400/20 to-indigo-500/20",
   },
   {
     icon: Github,
     label: "GitHub",
     value: "View my GitHub",
     href: siteConfig.links.github,
-    gradient: "from-gray-500 to-slate-600",
-    bgGradient: "from-gray-500/20 to-slate-600/20",
+    gradient: "from-purple-400 to-violet-600",
+    bgGradient: "from-purple-400/20 to-violet-600/20",
   },
   {
     icon: MessageCircle,
     label: "WhatsApp",
     value: "Chat on WhatsApp",
     href: siteConfig.links.whatsapp,
-    gradient: "from-green-500 to-emerald-500",
-    bgGradient: "from-green-500/20 to-emerald-500/20",
+    gradient: "from-emerald-400 to-teal-500",
+    bgGradient: "from-emerald-400/20 to-teal-500/20",
   },
 ];
 
@@ -114,49 +114,58 @@ export function Contact() {
 
   return (
     <SectionWrapper id="contact" className="relative overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute inset-0 bg-linear-to-b from-muted/50 via-background to-background" />
+      {/* Space-themed background */}
+      <div className="absolute inset-0 bg-linear-to-b from-violet-900/5 via-transparent to-blue-900/5" />
 
-      {/* Floating gradient blobs */}
+      {/* Floating nebula blobs */}
       <Floating
         duration={6}
         distance={20}
-        className="absolute top-0 left-1/4 opacity-30"
+        className="absolute top-0 left-1/4 opacity-20"
       >
-        <div className="w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+        <div className="w-96 h-96 bg-violet-500/20 rounded-full blur-3xl" />
       </Floating>
       <Floating
         duration={8}
         distance={25}
         delay={2}
-        className="absolute bottom-0 right-1/4 opacity-30"
+        className="absolute bottom-0 right-1/4 opacity-20"
       >
-        <div className="w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
+        <div className="w-96 h-96 bg-blue-500/20 rounded-full blur-3xl" />
       </Floating>
 
-      {/* Floating particles with enhanced animation */}
+      {/* Twinkling stars */}
       {[...Array(8)].map((_, i) => (
         <motion.div
           key={i}
-          className="absolute w-2 h-2 bg-primary/30 rounded-full"
+          className="absolute w-1.5 h-1.5 bg-violet-400 rounded-full"
           style={{
             top: `${15 + i * 12}%`,
             left: `${8 + i * 12}%`,
+            boxShadow: "0 0 8px rgba(139, 92, 246, 0.5)",
           }}
           animate={{
-            y: [0, -30, 0],
-            x: [0, i % 2 === 0 ? 15 : -15, 0],
-            opacity: [0.2, 0.6, 0.2],
-            scale: [1, 1.2, 1],
+            opacity: [0.2, 0.8, 0.2],
+            scale: [1, 1.3, 1],
           }}
           transition={{
-            duration: 4 + i * 0.5,
+            duration: 3 + i * 0.4,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: i * 0.3,
+            delay: i * 0.2,
           }}
         />
       ))}
+
+      {/* Additional space decorations */}
+      <motion.div
+        animate={{ y: [0, -10, 0], rotate: 360 }}
+        transition={{
+          y: { duration: 5, repeat: Infinity },
+          rotate: { duration: 15, repeat: Infinity, ease: "linear" },
+        }}
+        className="absolute top-[20%] right-[8%] w-3 h-3 bg-linear-to-br from-purple-400 to-blue-400 rounded-full opacity-40"
+      />
 
       <div className="relative">
         <SectionHeader
@@ -170,25 +179,25 @@ export function Contact() {
             <div className="space-y-4">
               <Reveal delay={0.1}>
                 <motion.div
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20"
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <Sparkles className="h-4 w-4 text-primary" />
-                  <span className="text-sm font-medium">
+                  <Sparkles className="h-4 w-4 text-violet-400" />
+                  <span className="text-sm font-medium text-violet-300">
                     Let&apos;s Connect
                   </span>
                 </motion.div>
               </Reveal>
 
               <Reveal delay={0.2}>
-                <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-linear-to-r from-foreground to-foreground/70">
+                <h3 className="text-3xl font-bold bg-clip-text text-transparent bg-linear-to-r from-violet-300 via-purple-300 to-blue-300">
                   Ready to Start a Project?
                 </h3>
               </Reveal>
 
               <FadeContent delay={0.3} direction="up">
-                <p className="text-muted-foreground text-lg leading-relaxed">
+                <p className="text-gray-400 text-lg leading-relaxed">
                   I&apos;m always open to discussing new projects, creative
                   ideas, or opportunities to be part of your vision. Feel free
                   to reach out through any of the channels below.
@@ -211,8 +220,8 @@ export function Contact() {
                         rel="noopener noreferrer"
                         className="group block"
                       >
-                        <SpotlightCard>
-                          <Card className="h-full border-border/50 bg-background/50 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
+                        <SpotlightCard spotlightColor="rgba(139, 92, 246, 0.12)">
+                          <Card className="h-full border border-violet-500/20 bg-[#0a0a1a]/60 backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-violet-500/40 hover:shadow-lg hover:shadow-violet-500/10">
                             {/* Gradient overlay on hover */}
                             <div
                               className={`absolute inset-0 bg-linear-to-br ${link.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
@@ -227,14 +236,14 @@ export function Contact() {
                                 <link.icon className="h-5 w-5 text-white" />
                               </motion.div>
                               <div className="flex-1 min-w-0">
-                                <p className="font-semibold text-sm group-hover:text-primary transition-colors">
+                                <p className="font-semibold text-sm text-white group-hover:text-violet-300 transition-colors">
                                   {link.label}
                                 </p>
-                                <p className="text-xs text-muted-foreground truncate">
+                                <p className="text-xs text-gray-400 truncate">
                                   {link.value}
                                 </p>
                               </div>
-                              <ArrowUpRight className="h-4 w-4 text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
+                              <ArrowUpRight className="h-4 w-4 text-violet-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
                             </CardContent>
                           </Card>
                         </SpotlightCard>
@@ -251,10 +260,10 @@ export function Contact() {
               direction="up"
               className="hidden lg:block pt-4"
             >
-              <div className="flex items-center gap-4 text-muted-foreground">
-                <div className="flex-1 h-px bg-linear-to-r from-transparent via-border to-transparent" />
+              <div className="flex items-center gap-4 text-gray-500">
+                <div className="flex-1 h-px bg-linear-to-r from-transparent via-violet-500/30 to-transparent" />
                 <span className="text-sm">or send a message</span>
-                <div className="flex-1 h-px bg-linear-to-r from-transparent via-border to-transparent" />
+                <div className="flex-1 h-px bg-linear-to-r from-transparent via-violet-500/30 to-transparent" />
               </div>
             </FadeContent>
           </FadeContent>
@@ -262,11 +271,11 @@ export function Contact() {
           {/* Contact Form */}
           <FadeContent direction="right" blur>
             <TiltCard maxTilt={5} scale={1.01}>
-              <SpotlightCard>
-                <Card className="border-border/50 bg-background/80 backdrop-blur-sm shadow-xl overflow-hidden">
+              <SpotlightCard spotlightColor="rgba(139, 92, 246, 0.12)">
+                <Card className="border border-violet-500/20 bg-[#0a0a1a]/60 backdrop-blur-sm shadow-xl overflow-hidden">
                   {/* Card header decoration with animated gradient */}
                   <motion.div
-                    className="h-1.5 bg-linear-to-r from-primary via-primary/50 to-secondary"
+                    className="h-1.5 bg-linear-to-r from-violet-500 via-purple-500 to-blue-500"
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: 1 }}
                     viewport={{ once: true }}
@@ -284,9 +293,9 @@ export function Contact() {
                       >
                         <label
                           htmlFor="name"
-                          className="text-sm font-medium flex items-center gap-2"
+                          className="text-sm font-medium flex items-center gap-2 text-gray-300"
                         >
-                          <User className="h-4 w-4 text-muted-foreground" />
+                          <User className="h-4 w-4 text-violet-400" />
                           Name
                         </label>
                         <motion.div
@@ -303,9 +312,9 @@ export function Contact() {
                             onBlur={() => setFocusedField(null)}
                             required
                             disabled={isSubmitting}
-                            className={`h-12 bg-background/50 border-border/50 transition-all duration-300 ${
+                            className={`h-12 bg-[#0a0a1a]/80 border-violet-500/20 text-white placeholder:text-gray-500 transition-all duration-300 ${
                               focusedField === "name"
-                                ? "border-primary ring-2 ring-primary/20 shadow-lg shadow-primary/10"
+                                ? "border-violet-500 ring-2 ring-violet-500/20 shadow-lg shadow-violet-500/10"
                                 : ""
                             }`}
                           />
@@ -320,9 +329,9 @@ export function Contact() {
                       >
                         <label
                           htmlFor="email"
-                          className="text-sm font-medium flex items-center gap-2"
+                          className="text-sm font-medium flex items-center gap-2 text-gray-300"
                         >
-                          <AtSign className="h-4 w-4 text-muted-foreground" />
+                          <AtSign className="h-4 w-4 text-violet-400" />
                           Email
                         </label>
                         <motion.div className="relative">
@@ -337,9 +346,9 @@ export function Contact() {
                             onBlur={() => setFocusedField(null)}
                             required
                             disabled={isSubmitting}
-                            className={`h-12 bg-background/50 border-border/50 transition-all duration-300 ${
+                            className={`h-12 bg-[#0a0a1a]/80 border-violet-500/20 text-white placeholder:text-gray-500 transition-all duration-300 ${
                               focusedField === "email"
-                                ? "border-primary ring-2 ring-primary/20 shadow-lg shadow-primary/10"
+                                ? "border-violet-500 ring-2 ring-violet-500/20 shadow-lg shadow-violet-500/10"
                                 : ""
                             }`}
                           />
@@ -354,9 +363,9 @@ export function Contact() {
                       >
                         <label
                           htmlFor="message"
-                          className="text-sm font-medium flex items-center gap-2"
+                          className="text-sm font-medium flex items-center gap-2 text-gray-300"
                         >
-                          <MessageSquare className="h-4 w-4 text-muted-foreground" />
+                          <MessageSquare className="h-4 w-4 text-violet-400" />
                           Message
                         </label>
                         <Textarea
@@ -370,9 +379,9 @@ export function Contact() {
                           onBlur={() => setFocusedField(null)}
                           required
                           disabled={isSubmitting}
-                          className={`bg-background/50 border-border/50 resize-none transition-all duration-300 ${
+                          className={`bg-[#0a0a1a]/80 border-violet-500/20 text-white placeholder:text-gray-500 resize-none transition-all duration-300 ${
                             focusedField === "message"
-                              ? "border-primary ring-2 ring-primary/20 shadow-lg shadow-primary/10"
+                              ? "border-violet-500 ring-2 ring-violet-500/20 shadow-lg shadow-violet-500/10"
                               : ""
                           }`}
                         />
@@ -388,7 +397,7 @@ export function Contact() {
                             <Button
                               type="submit"
                               size="lg"
-                              className="w-full h-12 bg-linear-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 shadow-lg shadow-primary/25 transition-all duration-300 relative overflow-hidden group"
+                              className="w-full h-12 bg-linear-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white shadow-lg shadow-violet-500/25 transition-all duration-300 relative overflow-hidden group"
                               disabled={isSubmitting}
                             >
                               {/* Shimmer effect */}
@@ -431,10 +440,10 @@ export function Contact() {
                         <motion.div
                           initial={{ opacity: 0, y: 10, scale: 0.95 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
-                          className="flex items-center justify-center gap-2 p-4 rounded-lg bg-green-500/10 border border-green-500/20"
+                          className="flex items-center justify-center gap-2 p-4 rounded-lg bg-emerald-500/10 border border-emerald-500/20"
                         >
-                          <Sparkles className="h-5 w-5 text-green-500" />
-                          <p className="text-sm font-medium text-green-600 dark:text-green-400">
+                          <Sparkles className="h-5 w-5 text-emerald-400" />
+                          <p className="text-sm font-medium text-emerald-400">
                             Message sent successfully! I&apos;ll get back to you
                             soon.
                           </p>
@@ -447,7 +456,7 @@ export function Contact() {
                           animate={{ opacity: 1, y: 0, scale: 1 }}
                           className="flex items-center justify-center gap-2 p-4 rounded-lg bg-red-500/10 border border-red-500/20"
                         >
-                          <p className="text-sm font-medium text-red-600 dark:text-red-400">
+                          <p className="text-sm font-medium text-red-400">
                             Failed to send message. Please try again or use
                             another contact method.
                           </p>

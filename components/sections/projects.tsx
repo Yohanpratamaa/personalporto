@@ -1,7 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { ExternalLink, Github, Folder, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  ExternalLink,
+  Github,
+  Folder,
+  ArrowUpRight,
+  Rocket,
+} from "lucide-react";
 import { SectionWrapper, SectionHeader } from "@/components/section-wrapper";
 import {
   Card,
@@ -23,8 +30,24 @@ import {
 export function Projects() {
   return (
     <SectionWrapper id="projects" className="relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-linear-to-b from-muted/50 via-background to-background" />
+      {/* Space-themed background */}
+      <div className="absolute inset-0 bg-linear-to-b from-blue-900/5 via-transparent to-purple-900/5" />
+
+      {/* Floating space elements */}
+      <motion.div
+        animate={{ y: [0, -15, 0], rotate: 360 }}
+        transition={{
+          y: { duration: 6, repeat: Infinity },
+          rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+        }}
+        className="absolute top-40 right-[8%] w-4 h-4 bg-linear-to-br from-violet-400 to-purple-500 rounded-full opacity-50"
+        style={{ boxShadow: "0 0 15px rgba(139, 92, 246, 0.5)" }}
+      />
+      <motion.div
+        animate={{ opacity: [0.3, 1, 0.3] }}
+        transition={{ duration: 3, repeat: Infinity }}
+        className="absolute bottom-[20%] left-[5%] w-2 h-2 bg-white rounded-full"
+      />
 
       <div className="relative">
         <SectionHeader
@@ -45,11 +68,11 @@ export function Projects() {
             >
               <SpotlightCard
                 className="h-full"
-                spotlightColor="rgba(59, 130, 246, 0.15)"
+                spotlightColor="rgba(139, 92, 246, 0.15)"
               >
-                <Card className="h-full flex flex-col overflow-hidden border border-border/50 bg-background/80 backdrop-blur-sm hover:shadow-2xl hover:border-primary/20 transition-all duration-500 group">
+                <Card className="h-full flex flex-col overflow-hidden border border-violet-500/20 bg-[#0a0a1a]/60 backdrop-blur-sm hover:shadow-2xl hover:shadow-violet-500/10 hover:border-violet-500/30 transition-all duration-500 group">
                   {/* Project Image */}
-                  <div className="relative h-52 overflow-hidden bg-linear-to-br from-muted to-muted/50">
+                  <div className="relative h-52 overflow-hidden bg-linear-to-br from-violet-900/20 to-blue-900/20">
                     <Image
                       src={project.image}
                       alt={project.title}
@@ -58,14 +81,18 @@ export function Projects() {
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                     {/* Fallback gradient */}
-                    <div className="absolute inset-0 bg-linear-to-br from-primary/10 via-blue-500/10 to-purple-500/10 flex items-center justify-center">
-                      <Folder className="h-16 w-16 text-muted-foreground/30" />
+                    <div className="absolute inset-0 bg-linear-to-br from-violet-500/10 via-blue-500/10 to-purple-500/10 flex items-center justify-center">
+                      <Rocket className="h-16 w-16 text-violet-400/30" />
                     </div>
 
                     {/* Overlay on hover */}
-                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-4 gap-3">
+                    <div className="absolute inset-0 bg-linear-to-t from-[#0a0a1a] via-[#0a0a1a]/70 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-4 gap-3">
                       <Magnetic strength={0.3}>
-                        <Button size="sm" className="shadow-lg" asChild>
+                        <Button
+                          size="sm"
+                          className="shadow-lg bg-violet-600 hover:bg-violet-500 text-white"
+                          asChild
+                        >
                           <a
                             href={project.liveUrl}
                             target="_blank"
@@ -80,7 +107,7 @@ export function Projects() {
                         <Button
                           size="sm"
                           variant="secondary"
-                          className="shadow-lg"
+                          className="shadow-lg bg-[#0a0a1a]/80 border-violet-500/30 hover:border-violet-400/50 text-violet-200"
                           asChild
                         >
                           <a
@@ -99,15 +126,15 @@ export function Projects() {
                   {/* Project Info */}
                   <CardHeader className="pb-3">
                     <div className="flex items-start justify-between">
-                      <h3 className="text-xl font-bold group-hover:text-primary transition-colors duration-300">
+                      <h3 className="text-xl font-bold group-hover:text-violet-400 transition-colors duration-300">
                         {project.title}
                       </h3>
-                      <ArrowUpRight className="h-5 w-5 text-muted-foreground opacity-0 group-hover:opacity-100 group-hover:text-primary transition-all duration-300 -translate-x-2 group-hover:translate-x-0" />
+                      <ArrowUpRight className="h-5 w-5 text-violet-400/50 opacity-0 group-hover:opacity-100 group-hover:text-violet-400 transition-all duration-300 -translate-x-2 group-hover:translate-x-0" />
                     </div>
                   </CardHeader>
 
                   <CardContent className="flex-1 pt-0">
-                    <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
+                    <p className="text-gray-400 text-sm leading-relaxed line-clamp-3">
                       {project.description}
                     </p>
                   </CardContent>
@@ -119,7 +146,7 @@ export function Projects() {
                         <Badge
                           key={tech}
                           variant="secondary"
-                          className="text-xs font-medium bg-primary/5 hover:bg-primary/10 transition-colors"
+                          className="text-xs font-medium bg-violet-500/10 text-violet-300 hover:bg-violet-500/20 border border-violet-500/20 transition-colors"
                         >
                           {tech}
                         </Badge>
@@ -128,7 +155,11 @@ export function Projects() {
 
                     {/* Links - Mobile visible */}
                     <div className="flex gap-3 w-full md:hidden">
-                      <Button size="sm" className="flex-1" asChild>
+                      <Button
+                        size="sm"
+                        className="flex-1 bg-violet-600 hover:bg-violet-500"
+                        asChild
+                      >
                         <a
                           href={project.liveUrl}
                           target="_blank"
@@ -141,7 +172,7 @@ export function Projects() {
                       <Button
                         size="sm"
                         variant="outline"
-                        className="flex-1"
+                        className="flex-1 border-violet-500/30 text-violet-300 hover:bg-violet-500/10"
                         asChild
                       >
                         <a
@@ -168,7 +199,7 @@ export function Projects() {
               variant="outline"
               size="lg"
               asChild
-              className="group border-2 px-8 py-6 text-base hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300"
+              className="group border-2 border-violet-500/30 px-8 py-6 text-base text-violet-300 hover:bg-violet-600 hover:text-white hover:border-violet-500 transition-all duration-300"
             >
               <a
                 href={siteConfig.links.github}
@@ -182,6 +213,18 @@ export function Projects() {
             </Button>
           </Magnetic>
         </FadeContent>
+
+        {/* Additional space decorations */}
+        <motion.div
+          animate={{ opacity: [0.2, 0.6, 0.2] }}
+          transition={{ duration: 4, repeat: Infinity }}
+          className="absolute bottom-20 right-[15%] w-1 h-1 bg-purple-400 rounded-full"
+        />
+        <motion.div
+          animate={{ opacity: [0.4, 1, 0.4] }}
+          transition={{ duration: 2.5, repeat: Infinity, delay: 1 }}
+          className="absolute top-[30%] left-[3%] w-1.5 h-1.5 bg-blue-400 rounded-full"
+        />
       </div>
     </SectionWrapper>
   );
