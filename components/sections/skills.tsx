@@ -36,26 +36,26 @@ const skillCategories = [
     badgeColor:
       "bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border-blue-500/30",
   },
-  {
-    title: "AI / ML",
-    icon: Brain,
-    skills: skills.aiml,
-    gradient: "from-purple-500 to-pink-500",
-    bgColor: "bg-purple-500/10",
-    textColor: "text-purple-400",
-    badgeColor:
-      "bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 border-purple-500/30",
-  },
-  {
-    title: "Tools",
-    icon: Wrench,
-    skills: skills.tools,
-    gradient: "from-indigo-500 to-violet-500",
-    bgColor: "bg-indigo-500/10",
-    textColor: "text-indigo-400",
-    badgeColor:
-      "bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 border-indigo-500/30",
-  },
+  // {
+  //   title: "AI / ML",
+  //   icon: Brain,
+  //   skills: skills.aiml,
+  //   gradient: "from-purple-500 to-pink-500",
+  //   bgColor: "bg-purple-500/10",
+  //   textColor: "text-purple-400",
+  //   badgeColor:
+  //     "bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 border-purple-500/30",
+  // },
+  // {
+  //   title: "Tools",
+  //   icon: Wrench,
+  //   skills: skills.tools,
+  //   gradient: "from-indigo-500 to-violet-500",
+  //   bgColor: "bg-indigo-500/10",
+  //   textColor: "text-indigo-400",
+  //   badgeColor:
+  //     "bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-400 border-indigo-500/30",
+  // },
 ];
 
 export function Skills() {

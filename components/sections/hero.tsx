@@ -344,12 +344,8 @@ export function Hero() {
                     priority
                     sizes="(max-width: 640px) 288px, (max-width: 1024px) 320px, 384px"
                   />
-                  {/* Fallback gradient - cosmic themed */}
-                  <div className="absolute inset-0 bg-linear-to-br from-violet-600/30 via-purple-500/20 to-blue-600/30 flex items-center justify-center">
-                    <span className="text-7xl font-bold text-white/60">
-                      {siteConfig.name.charAt(0)}
-                    </span>
-                  </div>
+                  {/* Overlay gradient - cosmic themed */}
+                  <div className="absolute inset-0 bg-linear-to-br from-violet-600/20 via-transparent to-blue-600/20 pointer-events-none" />
                   {/* Atmospheric glow overlay */}
                   <div className="absolute inset-0 bg-linear-to-t from-violet-900/20 via-transparent to-white/5" />
                 </div>

@@ -31,17 +31,16 @@ import {
 } from "@/components/ui/animations";
 
 const stats = [
-  { value: 3, suffix: "+", label: "Years Experience", icon: Clock },
-  { value: 15, suffix: "+", label: "Projects Built", icon: Rocket },
+  { value: 1, suffix: "+", label: "Years Experience", icon: Clock },
+  { value: 5, suffix: "+", label: "Projects Built", icon: Rocket },
   { value: 10, suffix: "+", label: "Technologies", icon: Zap },
   { value: 100, suffix: "%", label: "Dedication", icon: Heart },
 ];
 
 const hobbies = [
-  { icon: Code2, label: "Coding" },
+  { icon: Star, label: "Watch Drama" },
   { icon: Coffee, label: "Coffee" },
-  { icon: Gamepad2, label: "Gaming" },
-  { icon: Brain, label: "AI/ML" },
+  { icon: Gamepad2, label: "Gaming" }
 ];
 
 export function About() {
@@ -138,18 +137,14 @@ export function About() {
                     {/* Main image container */}
                     <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-full overflow-hidden border-4 border-violet-500/40 shadow-2xl shadow-violet-500/20">
                       <Image
-                        src="/profile.jpg"
+                        src="/foto_2.jpg"
                         alt={siteConfig.name}
                         fill
                         className="object-cover"
                         sizes="(max-width: 640px) 256px, 288px"
                       />
-                      {/* Fallback gradient */}
-                      <div className="absolute inset-0 bg-linear-to-br from-violet-600/40 via-purple-500/30 to-blue-600/40 flex items-center justify-center">
-                        <span className="text-6xl font-bold text-white/70">
-                          {siteConfig.name.charAt(0)}
-                        </span>
-                      </div>
+                      {/* Overlay gradient */}
+                      <div className="absolute inset-0 bg-linear-to-br from-violet-600/10 via-transparent to-blue-600/10 pointer-events-none" />
                       {/* Overlay glow */}
                       <div className="absolute inset-0 bg-linear-to-t from-violet-900/30 via-transparent to-white/5" />
                     </div>
@@ -246,43 +241,45 @@ export function About() {
                       <div className="space-y-4 text-gray-300 leading-relaxed">
                         <FadeContent delay={0.2} direction="up">
                           <p>
-                            I&apos;m a passionate{" "}
+                            I&apos;m a{" "}
                             <span className="text-violet-400 font-semibold">
-                              Software Engineer
+                              Information Systems graduate
                             </span>{" "}
-                            currently working at ITG.ID, where I build
-                            innovative digital solutions. My journey in tech
-                            started with curiosity and has evolved into
-                            expertise in full-stack development and AI
-                            integration.
+                            with an impressive GPA of{" "}
+                            <span className="text-purple-400 font-semibold">
+                              3.91/4.00
+                            </span>
+                            , equipped with hands-on experience building{" "}
+                            <span className="text-blue-400 font-semibold">
+                              3+ web-based applications
+                            </span>{" "}
+                            using Laravel and React.
                           </p>
                         </FadeContent>
 
                         <FadeContent delay={0.3} direction="up">
                           <p>
-                            Specializing in{" "}
+                            Skilled in designing{" "}
                             <span className="text-violet-400 font-semibold">
-                              Full-Stack Web Development
+                              CRUD systems
                             </span>
-                            , with deep expertise in{" "}
+                            , implementing{" "}
                             <span className="text-purple-400 font-semibold">
-                              AI Chatbot Development
-                            </span>{" "}
-                            using LangChain & RAG, and{" "}
+                              RBAC for 3+ user roles
+                            </span>
+                            , and integrating{" "}
                             <span className="text-blue-400 font-semibold">
-                              workflow automation
+                              geolocation-based attendance systems
                             </span>{" "}
-                            with n8n. I transform complex problems into elegant
-                            digital solutions.
+                            for 200+ employees.
                           </p>
                         </FadeContent>
 
                         <FadeContent delay={0.4} direction="up">
                           <p className="text-gray-400">
-                            Previously interned at Garudacyber, building event
-                            ticketing systems. Now crafting AI-powered solutions
-                            and company systems at ITG.ID. Always eager to learn
-                            and explore new technologies! 🚀
+                            Passionate about building scalable web solutions and
+                            thriving in team collaboration environments. Always
+                            eager to learn and explore new technologies! 🚀
                           </p>
                         </FadeContent>
                       </div>
@@ -308,7 +305,7 @@ export function About() {
                             <div>
                               <p className="text-xs text-gray-500">Education</p>
                               <p className="text-sm font-medium text-white">
-                                Computer Science
+                                Information System
                               </p>
                             </div>
                           </div>
