@@ -1,7 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Trophy, Briefcase, Award, Users, Calendar, Star } from "lucide-react";
+import {
+  Trophy,
+  Briefcase,
+  Award,
+  Users,
+  Calendar,
+  Star,
+  GraduationCap,
+  Code2,
+} from "lucide-react";
 import { SectionWrapper, SectionHeader } from "@/components/section-wrapper";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -18,6 +27,9 @@ const typeIcons = {
   internship: Briefcase,
   certification: Award,
   leadership: Users,
+  work: Code2,
+  education: GraduationCap,
+  freelance: Star,
 };
 
 const typeGradients = {
@@ -25,6 +37,9 @@ const typeGradients = {
   internship: "from-violet-500 to-purple-500",
   certification: "from-emerald-400 to-teal-500",
   leadership: "from-blue-400 to-indigo-500",
+  work: "from-rose-500 to-pink-500",
+  education: "from-cyan-400 to-sky-500",
+  freelance: "from-orange-400 to-amber-500",
 };
 
 const typeColors = {
@@ -32,6 +47,9 @@ const typeColors = {
   internship: "bg-violet-500/10 text-violet-400 border-violet-500/30",
   certification: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
   leadership: "bg-blue-500/10 text-blue-400 border-blue-500/30",
+  work: "bg-rose-500/10 text-rose-400 border-rose-500/30",
+  education: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30",
+  freelance: "bg-orange-500/10 text-orange-400 border-orange-500/30",
 };
 
 export function Experience() {

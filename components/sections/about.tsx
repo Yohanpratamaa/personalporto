@@ -31,28 +31,17 @@ import {
 } from "@/components/ui/animations";
 
 const stats = [
-  { value: 2, suffix: "+", label: "Years Learning", icon: Clock },
-  { value: 10, suffix: "+", label: "Projects Built", icon: Rocket },
-  { value: 5, suffix: "+", label: "Technologies", icon: Zap },
-  { value: 100, suffix: "%", label: "Passion", icon: Heart },
-];
-
-const techStack = [
-  "React",
-  "Next.js",
-  "TypeScript",
-  "Node.js",
-  "Python",
-  "TailwindCSS",
-  "PostgreSQL",
-  "Git",
+  { value: 3, suffix: "+", label: "Years Experience", icon: Clock },
+  { value: 15, suffix: "+", label: "Projects Built", icon: Rocket },
+  { value: 10, suffix: "+", label: "Technologies", icon: Zap },
+  { value: 100, suffix: "%", label: "Dedication", icon: Heart },
 ];
 
 const hobbies = [
   { icon: Code2, label: "Coding" },
   { icon: Coffee, label: "Coffee" },
   { icon: Gamepad2, label: "Gaming" },
-  { icon: Brain, label: "Learning" },
+  { icon: Brain, label: "AI/ML" },
 ];
 
 export function About() {
@@ -259,40 +248,41 @@ export function About() {
                           <p>
                             I&apos;m a passionate{" "}
                             <span className="text-violet-400 font-semibold">
-                              System Information student
+                              Software Engineer
                             </span>{" "}
-                            on a mission to explore the vast universe of
-                            technology. My journey began with curiosity and has
-                            evolved into a deep love for creating digital
-                            experiences.
+                            currently working at ITG.ID, where I build
+                            innovative digital solutions. My journey in tech
+                            started with curiosity and has evolved into
+                            expertise in full-stack development and AI
+                            integration.
                           </p>
                         </FadeContent>
 
                         <FadeContent delay={0.3} direction="up">
                           <p>
-                            Currently orbiting around{" "}
+                            Specializing in{" "}
                             <span className="text-violet-400 font-semibold">
-                              full-stack web development
+                              Full-Stack Web Development
                             </span>
-                            , with satellites exploring{" "}
+                            , with deep expertise in{" "}
                             <span className="text-purple-400 font-semibold">
-                              artificial intelligence
+                              AI Chatbot Development
                             </span>{" "}
-                            and{" "}
+                            using LangChain & RAG, and{" "}
                             <span className="text-blue-400 font-semibold">
-                              cloud infrastructure
-                            </span>
-                            . I believe every line of code is a step towards
-                            building something extraordinary.
+                              workflow automation
+                            </span>{" "}
+                            with n8n. I transform complex problems into elegant
+                            digital solutions.
                           </p>
                         </FadeContent>
 
                         <FadeContent delay={0.4} direction="up">
                           <p className="text-gray-400">
-                            When I&apos;m not coding, you&apos;ll find me
-                            participating in hackathons, contributing to
-                            open-source galaxies, or stargazing at the latest
-                            tech trends. 🚀
+                            Previously interned at Garudacyber, building event
+                            ticketing systems. Now crafting AI-powered solutions
+                            and company systems at ITG.ID. Always eager to learn
+                            and explore new technologies! 🚀
                           </p>
                         </FadeContent>
                       </div>
@@ -307,7 +297,7 @@ export function About() {
                             <div>
                               <p className="text-xs text-gray-500">Location</p>
                               <p className="text-sm font-medium text-white">
-                                Indonesia 🇮🇩
+                                Bandung, Indonesia 🇮🇩
                               </p>
                             </div>
                           </div>
@@ -318,7 +308,7 @@ export function About() {
                             <div>
                               <p className="text-xs text-gray-500">Education</p>
                               <p className="text-sm font-medium text-white">
-                                System Information
+                                Computer Science
                               </p>
                             </div>
                           </div>
