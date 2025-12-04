@@ -5,7 +5,7 @@ import Image from "next/image";
 import { ArrowDown, Download, Github, Linkedin, Rocket } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import {
   BlurText,
   SplitText,
@@ -16,8 +16,25 @@ import {
   Typewriter,
 } from "@/components/ui/animations";
 
+// Hook to detect mobile device
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  return isMobile;
+}
+
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
@@ -39,77 +56,61 @@ export function Hero() {
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      {/* Space-themed background elements */}
-      <motion.div style={{ y, opacity }} className="absolute inset-0">
+      {/* Space-themed background elements - simplified for mobile */}
+      <motion.div
+        style={isMobile ? {} : { y, opacity }}
+        className="absolute inset-0"
+      >
         {/* Cosmic glow */}
         <div className="absolute inset-0 bg-linear-to-b from-transparent via-purple-900/5 to-transparent" />
 
-        {/* Floating planets/asteroids */}
-        <motion.div
-          animate={{
-            rotate: 360,
-          }}
-          transition={{
-            duration: 100,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          className="absolute top-1/4 right-[10%] w-4 h-4 bg-linear-to-br from-purple-400 to-purple-600 rounded-full shadow-lg shadow-purple-500/50"
-        />
-        <motion.div
-          animate={{
-            y: [0, -30, 0],
-            x: [0, 20, 0],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-[60%] left-[5%] w-3 h-3 bg-linear-to-br from-blue-400 to-cyan-500 rounded-full shadow-lg shadow-blue-500/50"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.6, 1, 0.6],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-[30%] left-[15%] w-2 h-2 bg-white rounded-full star-glow"
-        />
+        {/* Floating planets/asteroids - only on desktop */}
+        {!isMobile && (
+          <>
+            <motion.div
+              animate={{
+                rotate: 360,
+              }}
+              transition={{
+                duration: 100,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              className="absolute top-1/4 right-[10%] w-4 h-4 bg-linear-to-br from-purple-400 to-purple-600 rounded-full shadow-lg shadow-purple-500/50 gpu-accelerated"
+            />
+            <motion.div
+              animate={{
+                y: [0, -30, 0],
+                x: [0, 20, 0],
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="absolute top-[60%] left-[5%] w-3 h-3 bg-linear-to-br from-blue-400 to-cyan-500 rounded-full shadow-lg shadow-blue-500/50 gpu-accelerated"
+            />
+            <motion.div
+              animate={{
+                scale: [1, 1.3, 1],
+                opacity: [0.6, 1, 0.6],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className="absolute top-[30%] left-[15%] w-2 h-2 bg-white rounded-full star-glow gpu-accelerated"
+            />
+          </>
+        )}
 
-        {/* Nebula clouds */}
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.15, 0.25, 0.15],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-linear-to-r from-violet-500/20 via-purple-500/10 to-transparent rounded-full blur-[100px]"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.1, 0.2, 0.1],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2,
-          }}
-          className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-linear-to-r from-blue-500/15 via-cyan-500/10 to-transparent rounded-full blur-[120px]"
-        />
+        {/* Nebula clouds - simplified for mobile */}
+        <div className="absolute top-1/4 right-1/4 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-linear-to-r from-violet-500/15 via-purple-500/10 to-transparent rounded-full blur-[80px] md:blur-[100px]" />
+        <div className="absolute bottom-1/4 left-1/4 w-[350px] md:w-[500px] h-[350px] md:h-[500px] bg-linear-to-r from-blue-500/10 via-cyan-500/5 to-transparent rounded-full blur-[80px] md:blur-[120px]" />
 
-        {/* Star field parallax */}
-        <div className="absolute inset-0 opacity-30">
+        {/* Star field parallax - reduced on mobile */}
+        <div className="absolute inset-0 opacity-30 hidden md:block">
           {[
             { top: 12, left: 8, duration: 2.5, delay: 0.2 },
             { top: 25, left: 45, duration: 3.2, delay: 0.8 },
@@ -134,7 +135,7 @@ export function Hero() {
           ].map((star, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-white rounded-full"
+              className="absolute w-1 h-1 bg-white rounded-full gpu-accelerated"
               style={{
                 top: `${star.top}%`,
                 left: `${star.left}%`,
@@ -287,51 +288,44 @@ export function Hero() {
 
           {/* Profile Image */}
           <FadeContent delay={0.5} direction="up" className="shrink-0">
-            <Floating duration={4} distance={10}>
+            <div className={isMobile ? "" : ""}>
               <div className="relative">
-                {/* Cosmic glow effect */}
-                <motion.div
-                  className="absolute -inset-3 sm:-inset-4 bg-linear-to-r from-violet-500/40 via-purple-500/30 to-blue-500/40 rounded-full blur-2xl"
-                  animate={{
-                    opacity: [0.4, 0.7, 0.4],
-                    scale: [1, 1.1, 1],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
+                {/* Cosmic glow effect - simplified for mobile */}
+                <div className="absolute -inset-3 sm:-inset-4 bg-linear-to-r from-violet-500/40 via-purple-500/30 to-blue-500/40 rounded-full blur-2xl opacity-50" />
 
-                {/* Orbiting ring */}
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                  className="absolute -inset-4 sm:-inset-6 lg:-inset-8 rounded-full border-2 border-dashed border-violet-500/30"
-                >
-                  {/* Orbiting satellite/star */}
-                  <motion.div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 sm:w-3 sm:h-3 bg-violet-400 rounded-full star-glow" />
-                </motion.div>
-
-                {/* Second orbit ring - hidden on small mobile */}
-                <motion.div
-                  animate={{ rotate: -360 }}
-                  transition={{
-                    duration: 30,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                  className="absolute -inset-8 sm:-inset-10 lg:-inset-14 rounded-full border border-dotted border-purple-500/20 hidden sm:block"
-                >
+                {/* Orbiting ring - only on desktop */}
+                {!isMobile && (
                   <motion.div
-                    className="absolute bottom-0 right-0 w-2 h-2 bg-blue-400 rounded-full"
-                    style={{ boxShadow: "0 0 10px rgba(96, 165, 250, 0.8)" }}
-                  />
-                </motion.div>
+                    animate={{ rotate: 360 }}
+                    transition={{
+                      duration: 20,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                    className="absolute -inset-4 sm:-inset-6 lg:-inset-8 rounded-full border-2 border-dashed border-violet-500/30 gpu-accelerated"
+                  >
+                    {/* Orbiting satellite/star */}
+                    <motion.div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 sm:w-3 sm:h-3 bg-violet-400 rounded-full star-glow" />
+                  </motion.div>
+                )}
+
+                {/* Second orbit ring - hidden on mobile */}
+                {!isMobile && (
+                  <motion.div
+                    animate={{ rotate: -360 }}
+                    transition={{
+                      duration: 30,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                    className="absolute -inset-8 sm:-inset-10 lg:-inset-14 rounded-full border border-dotted border-purple-500/20 hidden sm:block gpu-accelerated"
+                  >
+                    <motion.div
+                      className="absolute bottom-0 right-0 w-2 h-2 bg-blue-400 rounded-full"
+                      style={{ boxShadow: "0 0 10px rgba(96, 165, 250, 0.8)" }}
+                    />
+                  </motion.div>
+                )}
 
                 {/* Image container - styled like a planet */}
                 <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-full overflow-hidden border-4 border-violet-500/30 shadow-2xl planet-glow">
@@ -349,7 +343,7 @@ export function Hero() {
                   <div className="absolute inset-0 bg-linear-to-t from-violet-900/20 via-transparent to-white/5" />
                 </div>
               </div>
-            </Floating>
+            </div>
           </FadeContent>
         </div>
       </div>

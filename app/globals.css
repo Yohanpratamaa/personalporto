@@ -469,3 +469,58 @@
   background: hsl(var(--primary) / 0.2);
   color: hsl(var(--primary));
 }
+
+/* Performance optimizations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+/* Reduce motion for accessibility and mobile performance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mobile performance optimizations */
+@media (max-width: 768px) {
+  .animate-twinkle,
+  .animate-twinkle-slow,
+  .animate-float-space,
+  .animate-orbit,
+  .animate-pulse-glow-space,
+  .animate-nebula-drift,
+  .animate-float-slow,
+  .animate-float-medium,
+  .animate-pulse-glow,
+  .animate-rotate-slow {
+    animation: none !important;
+  }
+
+  .planet-glow {
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.3);
+  }
+
+  .star-glow {
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  }
+}
+
+/* Smooth animations with GPU acceleration */
+.smooth-animation {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}

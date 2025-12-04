@@ -29,6 +29,23 @@ import {
   Floating,
   Reveal,
 } from "@/components/ui/animations";
+import { useEffect, useState } from "react";
+
+// Hook to detect mobile device
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  return isMobile;
+}
 
 const stats = [
   { value: 1, suffix: "+", label: "Years Experience", icon: Clock },
@@ -40,49 +57,44 @@ const stats = [
 const hobbies = [
   { icon: Star, label: "Watch Drama" },
   { icon: Coffee, label: "Coffee" },
-  { icon: Gamepad2, label: "Gaming" }
+  { icon: Gamepad2, label: "Gaming" },
 ];
 
 export function About() {
+  const isMobile = useIsMobile();
+
   return (
     <SectionWrapper id="about" className="relative overflow-hidden">
-      {/* Space nebula background */}
+      {/* Space nebula background - simplified */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-linear-to-b from-violet-900/10 via-transparent to-blue-900/10" />
-        <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
-          transition={{ duration: 15, repeat: Infinity }}
-          className="absolute top-1/4 -left-1/4 w-[600px] h-[600px] bg-violet-500/10 rounded-full blur-[120px]"
-        />
-        <motion.div
-          animate={{ scale: [1, 1.3, 1], opacity: [0.1, 0.15, 0.1] }}
-          transition={{ duration: 20, repeat: Infinity, delay: 5 }}
-          className="absolute bottom-1/4 -right-1/4 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[100px]"
-        />
+        <div className="absolute top-1/4 -left-1/4 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-violet-500/10 rounded-full blur-[100px] md:blur-[120px]" />
+        <div className="absolute bottom-1/4 -right-1/4 w-[350px] md:w-[500px] h-[350px] md:h-[500px] bg-blue-500/10 rounded-full blur-[80px] md:blur-[100px]" />
       </div>
 
-      {/* Floating stars */}
-      {[
-        { top: "10%", left: "5%", size: 2, delay: 0 },
-        { top: "20%", right: "10%", size: 3, delay: 1 },
-        { top: "60%", left: "8%", size: 2, delay: 2 },
-        { top: "80%", right: "15%", size: 2, delay: 1.5 },
-        { top: "40%", right: "5%", size: 1.5, delay: 0.5 },
-      ].map((star, i) => (
-        <motion.div
-          key={i}
-          className="absolute rounded-full bg-white"
-          style={{
-            top: star.top,
-            left: star.left,
-            right: star.right,
-            width: `${star.size * 4}px`,
-            height: `${star.size * 4}px`,
-          }}
-          animate={{ opacity: [0.2, 1, 0.2], scale: [0.8, 1.2, 0.8] }}
-          transition={{ duration: 3, repeat: Infinity, delay: star.delay }}
-        />
-      ))}
+      {/* Floating stars - only on desktop */}
+      {!isMobile &&
+        [
+          { top: "10%", left: "5%", size: 2, delay: 0 },
+          { top: "20%", right: "10%", size: 3, delay: 1 },
+          { top: "60%", left: "8%", size: 2, delay: 2 },
+          { top: "80%", right: "15%", size: 2, delay: 1.5 },
+          { top: "40%", right: "5%", size: 1.5, delay: 0.5 },
+        ].map((star, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-white gpu-accelerated"
+            style={{
+              top: star.top,
+              left: star.left,
+              right: star.right,
+              width: `${star.size * 4}px`,
+              height: `${star.size * 4}px`,
+            }}
+            animate={{ opacity: [0.2, 1, 0.2], scale: [0.8, 1.2, 0.8] }}
+            transition={{ duration: 3, repeat: Infinity, delay: star.delay }}
+          />
+        ))}
 
       <div className="relative">
         <SectionHeader
@@ -96,43 +108,40 @@ export function About() {
             {/* Profile Image with Space Theme */}
             <FadeContent direction="left" blur>
               <div className="relative flex justify-center">
-                <Floating duration={5} distance={10}>
+                <div className={isMobile ? "" : ""}>
                   <div className="relative">
-                    {/* Outer glow ring */}
-                    <motion.div
-                      className="absolute -inset-4 rounded-full bg-linear-to-r from-violet-500/40 via-purple-500/30 to-blue-500/40 blur-xl"
-                      animate={{
-                        opacity: [0.4, 0.7, 0.4],
-                        scale: [0.95, 1.05, 0.95],
-                      }}
-                      transition={{ duration: 4, repeat: Infinity }}
-                    />
+                    {/* Outer glow ring - simplified */}
+                    <div className="absolute -inset-4 rounded-full bg-linear-to-r from-violet-500/40 via-purple-500/30 to-blue-500/40 blur-xl opacity-50" />
 
-                    {/* Orbiting ring 1 */}
-                    <motion.div
-                      animate={{ rotate: 360 }}
-                      transition={{
-                        duration: 20,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                      className="absolute -inset-8 rounded-full border-2 border-dashed border-violet-500/30"
-                    >
-                      <div className="absolute top-1/2 -left-2 w-4 h-4 bg-violet-400 rounded-full shadow-lg shadow-violet-500/50" />
-                    </motion.div>
+                    {/* Orbiting ring 1 - only on desktop */}
+                    {!isMobile && (
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{
+                          duration: 20,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                        className="absolute -inset-8 rounded-full border-2 border-dashed border-violet-500/30 gpu-accelerated"
+                      >
+                        <div className="absolute top-1/2 -left-2 w-4 h-4 bg-violet-400 rounded-full shadow-lg shadow-violet-500/50" />
+                      </motion.div>
+                    )}
 
-                    {/* Orbiting ring 2 */}
-                    <motion.div
-                      animate={{ rotate: -360 }}
-                      transition={{
-                        duration: 30,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                      className="absolute -inset-14 rounded-full border border-dotted border-purple-500/20"
-                    >
-                      <div className="absolute bottom-4 right-4 w-3 h-3 bg-blue-400 rounded-full shadow-lg shadow-blue-500/50" />
-                    </motion.div>
+                    {/* Orbiting ring 2 - only on desktop */}
+                    {!isMobile && (
+                      <motion.div
+                        animate={{ rotate: -360 }}
+                        transition={{
+                          duration: 30,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                        className="absolute -inset-14 rounded-full border border-dotted border-purple-500/20 gpu-accelerated"
+                      >
+                        <div className="absolute bottom-4 right-4 w-3 h-3 bg-blue-400 rounded-full shadow-lg shadow-blue-500/50" />
+                      </motion.div>
+                    )}
 
                     {/* Main image container */}
                     <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-full overflow-hidden border-4 border-violet-500/40 shadow-2xl shadow-violet-500/20">
@@ -149,19 +158,15 @@ export function About() {
                       <div className="absolute inset-0 bg-linear-to-t from-violet-900/30 via-transparent to-white/5" />
                     </div>
 
-                    {/* Floating badge */}
-                    <motion.div
-                      animate={{ y: [0, -8, 0] }}
-                      transition={{ duration: 3, repeat: Infinity }}
-                      className="absolute -bottom-2 left-1/2 -translate-x-1/2"
-                    >
+                    {/* Floating badge - simplified animation */}
+                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2">
                       <Badge className="bg-linear-to-r from-violet-600 to-purple-600 text-white border-0 px-4 py-1.5 shadow-lg shadow-violet-500/30">
                         <Sparkles className="w-3 h-3 mr-1.5" />
                         Open to Work
                       </Badge>
-                    </motion.div>
+                    </div>
                   </div>
-                </Floating>
+                </div>
               </div>
             </FadeContent>
 

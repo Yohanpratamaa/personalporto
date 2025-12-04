@@ -495,7 +495,7 @@ export function ShimmerButton({
 }
 
 // ============================================
-// GRADIENT TEXT - Animated gradient text
+// GRADIENT TEXT - Animated gradient text (optimized)
 // ============================================
 interface GradientTextProps {
   children: React.ReactNode;
@@ -510,6 +510,17 @@ export function GradientText({
   colors = ["#3b82f6", "#8b5cf6", "#ec4899", "#3b82f6"],
   animationSpeed = 5,
 }: GradientTextProps) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const gradientStyle = {
     backgroundImage: `linear-gradient(90deg, ${colors.join(", ")})`,
     backgroundSize: "200% auto",
@@ -518,9 +529,18 @@ export function GradientText({
     WebkitTextFillColor: "transparent",
   };
 
+  // Static gradient on mobile for better performance
+  if (isMobile) {
+    return (
+      <span className={className} style={gradientStyle}>
+        {children}
+      </span>
+    );
+  }
+
   return (
     <motion.span
-      className={className}
+      className={cn(className, "gpu-accelerated")}
       style={gradientStyle}
       animate={{ backgroundPosition: ["0% center", "200% center"] }}
       transition={{
@@ -535,7 +555,7 @@ export function GradientText({
 }
 
 // ============================================
-// FLOATING ELEMENT - Gentle floating animation
+// FLOATING ELEMENT - Gentle floating animation (disabled on mobile)
 // ============================================
 interface FloatingProps {
   children: React.ReactNode;
@@ -552,9 +572,25 @@ export function Floating({
   distance = 10,
   delay = 0,
 }: FloatingProps) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Disable floating animation on mobile for better performance
+  if (isMobile) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
-      className={className}
+      className={cn(className, "gpu-accelerated")}
       animate={{
         y: [-distance, distance, -distance],
       }}
