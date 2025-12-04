@@ -8,9 +8,9 @@ export const siteConfig = {
   links: {
     github: "https://github.com/Yohanpratamaa",
     linkedin: "https://www.linkedin.com/in/yohanpratama26/",
-    instagram: "https://instagram.com/yohanpratama_",
+    instagram: "https://www.instagram.com/yohanrth/",
   },
-  resume: "/resume.pdf",
+  resume: "/cv.pdf",
 };
 
 export const navLinks = [
@@ -84,7 +84,7 @@ export const projects = [
     image: "/smartpresence.png",
     tech: ["Laravel", "TailwindCSS", "Filament", "PHP", "MySQL"],
     liveUrl: "#",
-    githubUrl: "https://github.com/Yohanpratamaa",
+    githubUrl: "https://github.com/Yohanpratamaa/Sucofindo-Absen.git",
   },
   {
     id: 3,
@@ -134,54 +134,72 @@ export const projects = [
     image: "/spacehub.png",
     tech: ["React Native", "Framer Motion", "TailwindCSS", "TypeScript"],
     liveUrl: "#",
-    githubUrl: "https://github.com/Yohanpratamaa/personalporto",
+    githubUrl: "https://github.com/Meriah-Team/SpaceHub-landing.git",
   },
 ];
 
 export const experiences = [
   {
     id: 1,
-    title: "Programmer",
-    organization: "ITG.ID (PT Indonesia Teknologi Gemilang)",
-    date: "October 2024 - Present",
+    title: "Finalist Hackathon 8.0 BNCC",
+    organization: "BNCC (Bina Nusantara Computer Club)",
+    date: "Jun 2025",
     description:
-      "Developing and maintaining company website, building AI chatbots with RAG technology using LangChain, creating internal systems (SIMPEL), and implementing n8n workflow automation for business processes.",
-    type: "work",
+      "Successfully became a finalist in the BNCC Hackathon 8.0 by developing WeCare, an innovative application in the health sector that integrates the concept of health paylater to help users gain easier access to medical services.",
+    type: "achievement",
   },
   {
     id: 2,
-    title: "Web Developer Intern",
-    organization: "PT Garuda Cyber Indonesia (Garudacyber)",
-    date: "February 2024 - June 2024",
+    title: "Business Plan 3rd Place National Student Level",
+    organization: "Accounting Information System Competition 2023",
+    date: "2023",
     description:
-      "Built web applications using Laravel framework, developed event ticketing systems with QR code functionality, collaborated with team using agile methodology, and gained hands-on experience in full-stack development.",
-    type: "internship",
+      "3rd Place in the Business Plan Competition at the National Student Level in the Accounting Information System Competition 2023 Event.",
+    type: "achievement",
   },
   {
     id: 3,
-    title: "Freelance Web Developer",
-    organization: "Self-Employed",
-    date: "2023 - Present",
+    title: "Intern Full Stack Development",
+    organization: "PT Sucofindo Cabang Bandung",
+    date: "Jul 2025 - Sept 2025",
     description:
-      "Delivering custom web solutions for clients including company profiles, landing pages, and small business websites. Managing projects from requirements gathering to deployment.",
-    type: "freelance",
+      "Developed an employee attendance web application using Laravel and JavaScript, enabling 50+ staff members to check in and out via camera-based photo verification and GPS location tracking within a 200-meter geofenced radius of the office.",
+    type: "internship",
   },
   {
     id: 4,
-    title: "Bachelor of Computer Science",
-    organization: "Institut Digital Ekonomi LPKIA",
-    date: "2021 - Present",
+    title: "Web-based Startup",
+    organization: "Bandung Techno Park",
+    date: "Feb 2025 - Jul 2025",
     description:
-      "Pursuing degree in Computer Science with focus on Software Engineering and Web Development. Active in campus tech community and various programming projects.",
-    type: "education",
+      "Implemented secure backend logic, RESTful routing, and authentication for 3 user roles (Customer, Café Owner, and Admin), reducing unauthorized access incidents by 95%.",
+    type: "work",
   },
   {
     id: 5,
-    title: "AI & LangChain Development",
-    organization: "Self-Learning & Professional Development",
-    date: "2024",
+    title: "Freelance Web Developer",
+    organization: "KOPASGAT",
+    date: "Dec 2024 - Feb 2025",
     description:
-      "Completed extensive training in AI development including LangChain, RAG implementation, prompt engineering, and AI chatbot development. Applied knowledge in real-world projects at ITG.ID.",
-    type: "certification",
+      "Designed and developed a CRUD system for 300+ inventory items, including category and user management, using the Laravel framework.",
+    type: "freelance",
+  },
+  {
+    id: 6,
+    title: "Algorithms and Programming Practicum Assistant",
+    organization: "Telkom University",
+    date: "Feb 2024 - Jun 2024",
+    description:
+      "Delivered 50+ code examples and clear syntax explanations in Python and Java to support the learning progress of 100+ students.",
+    type: "leadership",
+  },
+  {
+    id: 7,
+    title: "Network System Practicum Assistant",
+    organization: "Telkom University",
+    date: "Oct 2024 - Dec 2024",
+    description:
+      "Assist lecturers in guiding students to use network tools or software, such as Cisco Packet Tracer. Provide assessment of assignments and practicum reports submitted by students during practicum.",
+    type: "leadership",
   },
 ];
