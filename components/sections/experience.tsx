@@ -110,7 +110,7 @@ export function Experience() {
               return (
                 <div
                   key={experience.id}
-                  className={`relative pl-16 md:pl-0 pb-12 last:pb-0 ${
+                  className={`relative pl-14 sm:pl-16 md:pl-0 pb-10 sm:pb-12 last:pb-0 ${
                     isLeft ? "md:pr-[52%] md:text-right" : "md:pl-[52%]"
                   }`}
                 >
@@ -149,7 +149,7 @@ export function Experience() {
                     <Magnetic strength={0.08}>
                       <SpotlightCard spotlightColor="rgba(139, 92, 246, 0.12)">
                         <Card
-                          className={`border border-violet-500/20 bg-[#0a0a1a]/60 backdrop-blur-sm p-6 shadow-lg hover:shadow-xl hover:shadow-violet-500/10 hover:border-violet-500/30 transition-all duration-300 ${
+                          className={`border border-violet-500/20 bg-[#0a0a1a]/60 backdrop-blur-sm p-4 sm:p-5 md:p-6 shadow-lg hover:shadow-xl hover:shadow-violet-500/10 hover:border-violet-500/30 transition-all duration-300 ${
                             isLeft ? "md:mr-6" : "md:ml-6"
                           }`}
                         >

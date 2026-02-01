@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { navLinks, siteConfig } from "@/config/site";
@@ -12,12 +11,9 @@ import { cn } from "@/lib/utils";
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    setMounted(true);
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
 
@@ -57,11 +53,11 @@ export function Navbar() {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         scrolled
           ? "bg-[#0a0a1a]/80 backdrop-blur-xl border-b border-violet-500/10 shadow-lg shadow-violet-500/5"
-          : "bg-transparent border-b border-transparent"
+          : "bg-transparent border-b border-transparent",
       )}
     >
-      <nav className="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+      <nav className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -76,7 +72,7 @@ export function Navbar() {
               }}
               className="relative group"
             >
-              <span className="text-xl lg:text-2xl font-bold bg-linear-to-r from-violet-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">
+              <span className="text-lg sm:text-xl lg:text-2xl font-bold bg-linear-to-r from-violet-400 via-purple-400 to-blue-400 bg-clip-text text-transparent">
                 {siteConfig.name}
               </span>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-linear-to-r from-violet-500 to-blue-500 group-hover:w-full transition-all duration-300" />
@@ -100,7 +96,7 @@ export function Navbar() {
                       "relative px-4 py-2 text-sm font-medium transition-colors rounded-full",
                       isActive
                         ? "text-violet-400"
-                        : "text-muted-foreground hover:text-white"
+                        : "text-muted-foreground hover:text-white",
                     )}
                   >
                     {link.name}
@@ -119,63 +115,10 @@ export function Navbar() {
                 </motion.div>
               );
             })}
-
-            {/* Theme Toggle */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="ml-2"
-            >
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                className="relative rounded-full hover:bg-violet-500/10 overflow-hidden"
-              >
-                <AnimatePresence mode="wait" initial={false}>
-                  {mounted && theme === "dark" ? (
-                    <motion.div
-                      key="sun"
-                      initial={{ y: -20, opacity: 0, rotate: -90 }}
-                      animate={{ y: 0, opacity: 1, rotate: 0 }}
-                      exit={{ y: 20, opacity: 0, rotate: 90 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Sun className="h-5 w-5 text-yellow-400" />
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="moon"
-                      initial={{ y: -20, opacity: 0, rotate: 90 }}
-                      animate={{ y: 0, opacity: 1, rotate: 0 }}
-                      exit={{ y: 20, opacity: 0, rotate: -90 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Moon className="h-5 w-5" />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-                <span className="sr-only">Toggle theme</span>
-              </Button>
-            </motion.div>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="rounded-full"
-            >
-              {mounted &&
-                (theme === "dark" ? (
-                  <Sun className="h-5 w-5" />
-                ) : (
-                  <Moon className="h-5 w-5" />
-                ))}
-            </Button>
+          <div className="md:hidden">
             <Button
               variant="ghost"
               size="icon"
@@ -236,7 +179,7 @@ export function Navbar() {
                           "block w-full text-left px-4 py-3 text-sm font-medium rounded-xl transition-all",
                           isActive
                             ? "text-violet-400 bg-violet-500/15 border border-violet-500/30"
-                            : "text-gray-300 hover:text-white hover:bg-violet-500/10"
+                            : "text-gray-300 hover:text-white hover:bg-violet-500/10",
                         )}
                       >
                         {link.name}

@@ -175,7 +175,7 @@ export function Certifications() {
         />
 
         {/* Certification Cards - Hexagonal/Card Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-7 lg:gap-8">
           {certifications.map((cert, index) => (
             <FadeContent key={cert.id} delay={index * 0.1} direction="up">
               <Magnetic strength={0.05}>
@@ -186,7 +186,7 @@ export function Certifications() {
                     className="relative group h-full"
                   >
                     {/* Card */}
-                    <div className="relative h-full p-6 rounded-2xl bg-[#0a0a1a]/70 border border-violet-500/20 backdrop-blur-sm overflow-hidden">
+                    <div className="relative h-full p-5 sm:p-6 rounded-2xl bg-[#0a0a1a]/70 border border-violet-500/20 backdrop-blur-sm overflow-hidden">
                       {/* Gradient border effect on hover */}
                       <div
                         className={`absolute inset-0 bg-gradient-to-br ${cert.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500 rounded-2xl`}
@@ -336,7 +336,7 @@ export function Certifications() {
                 <p className="text-2xl font-bold text-violet-400">
                   {certifications.reduce(
                     (acc, cert) => acc + cert.skills.length,
-                    0
+                    0,
                   )}
                   +
                 </p>

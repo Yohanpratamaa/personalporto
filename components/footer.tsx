@@ -35,7 +35,7 @@ export function Footer() {
 
       <div className="relative w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12">
         {/* Main Footer Content */}
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8">
           {/* Brand and Copyright */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -65,7 +65,7 @@ export function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex items-center gap-3"
+            className="flex items-center gap-2.5 sm:gap-3"
           >
             {socialLinks.map((social, index) => (
               <motion.div

@@ -50,7 +50,7 @@ export function Projects() {
         />
 
         <StaggerChildren
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-7 lg:gap-8"
           staggerDelay={0.15}
         >
           {projects.map((project) => (
@@ -66,7 +66,7 @@ export function Projects() {
               >
                 <Card className="h-full flex flex-col overflow-hidden border border-violet-500/20 bg-[#0a0a1a]/60 backdrop-blur-sm hover:shadow-2xl hover:shadow-violet-500/10 hover:border-violet-500/30 transition-all duration-500 group">
                   {/* Project Image */}
-                  <div className="relative h-52 overflow-hidden bg-linear-to-br from-violet-900/20 to-blue-900/20">
+                  <div className="relative h-48 sm:h-52 md:h-56 overflow-hidden bg-linear-to-br from-violet-900/20 to-blue-900/20">
                     <Image
                       src={project.image}
                       alt={project.title}
@@ -183,17 +183,21 @@ export function Projects() {
         </StaggerChildren>
 
         {/* View All Button */}
-        <FadeContent delay={0.6} direction="up" className="mt-16 text-center">
+        <FadeContent
+          delay={0.6}
+          direction="up"
+          className="mt-12 sm:mt-16 text-center px-4"
+        >
           <Magnetic strength={0.2}>
             <motion.div
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="inline-block"
+              className="inline-block w-full sm:w-auto"
             >
               <Button
                 size="lg"
                 asChild
-                className="group px-8 py-6 text-base bg-linear-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white shadow-lg shadow-violet-500/25 transition-all duration-300 relative overflow-hidden"
+                className="group w-full sm:w-auto px-6 py-5 sm:px-8 sm:py-6 text-sm sm:text-base bg-linear-to-r from-violet-600 to-purple-600 hover:from-violet-500 hover:to-purple-500 text-white shadow-lg shadow-violet-500/25 transition-all duration-300 relative overflow-hidden"
               >
                 <a
                   href={siteConfig.links.github}
@@ -211,10 +215,13 @@ export function Projects() {
                       ease: "linear",
                     }}
                   />
-                  <span className="relative z-10 flex items-center">
-                    <Github className="h-5 w-5 mr-2 group-hover:rotate-12 transition-transform" />
-                    View All Projects on GitHub
-                    <ArrowUpRight className="h-4 w-4 ml-2 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <span className="relative z-10 flex items-center justify-center">
+                    <Github className="h-4 w-4 sm:h-5 sm:w-5 mr-2 group-hover:rotate-12 transition-transform" />
+                    <span className="hidden sm:inline">
+                      View All Projects on GitHub
+                    </span>
+                    <span className="sm:hidden">All Projects on GitHub</span>
+                    <ArrowUpRight className="h-3 w-3 sm:h-4 sm:w-4 ml-2 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </span>
                 </a>
               </Button>

@@ -90,7 +90,7 @@ export function Skills() {
           subtitle="The tools and technologies I use to bring ideas to life"
         />
 
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 md:gap-7 lg:gap-8">
           {skillCategories.slice(0, 2).map((category, categoryIndex) => (
             <TiltCard key={category.title} maxTilt={8} scale={1.02}>
               <SpotlightCard spotlightColor="rgba(139, 92, 246, 0.12)">

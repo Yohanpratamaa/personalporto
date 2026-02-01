@@ -154,8 +154,8 @@ export function Hero() {
         </div>
       </motion.div>
 
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 relative z-10 pt-20 lg:pt-0">
-        <div className="flex flex-col-reverse lg:flex-row items-center justify-center gap-8 lg:gap-20">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10 pt-16 sm:pt-20 lg:pt-0">
+        <div className="flex flex-col-reverse lg:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-20">
           {/* Text Content */}
           <div className="flex-1 text-center lg:text-left max-w-2xl">
             <FadeContent delay={0.2} direction="up" blur>
@@ -169,36 +169,38 @@ export function Hero() {
               </span>
             </FadeContent>
 
-            <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.1]">
+            <div className="text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight leading-[1.15] sm:leading-[1.1] flex flex-col items-center lg:items-start">
               <BlurText
                 text="Hi, I'm"
                 className="mb-1 sm:mb-2 text-white"
                 delay={0.3}
               />
-              <div className="relative inline-block">
-                <GradientText
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold"
-                  colors={[
-                    "#a855f7",
-                    "#8b5cf6",
-                    "#6366f1",
-                    "#3b82f6",
-                    "#a855f7",
-                  ]}
-                  animationSpeed={4}
-                >
-                  <SplitText
-                    text={siteConfig.name}
-                    delay={0.6}
-                    staggerDelay={0.05}
+              <div className="relative inline-block w-full lg:w-auto flex justify-center lg:justify-start">
+                <div className="relative">
+                  <GradientText
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold"
+                    colors={[
+                      "#a855f7",
+                      "#8b5cf6",
+                      "#6366f1",
+                      "#3b82f6",
+                      "#a855f7",
+                    ]}
+                    animationSpeed={4}
+                  >
+                    <SplitText
+                      text={siteConfig.name}
+                      delay={0.6}
+                      staggerDelay={0.05}
+                    />
+                  </GradientText>
+                  <motion.span
+                    className="absolute -bottom-2 left-0 right-0 h-1 bg-linear-to-r from-violet-500 via-purple-500 to-blue-500 rounded-full"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ delay: 1.5, duration: 0.8, ease: "easeOut" }}
                   />
-                </GradientText>
-                <motion.span
-                  className="absolute -bottom-2 left-0 right-0 h-1 bg-linear-to-r from-violet-500 via-purple-500 to-blue-500 rounded-full"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ delay: 1.5, duration: 0.8, ease: "easeOut" }}
-                />
+                </div>
               </div>
             </div>
 
@@ -328,14 +330,14 @@ export function Hero() {
                 )}
 
                 {/* Image container - styled like a planet */}
-                <div className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-full overflow-hidden border-4 border-violet-500/30 shadow-2xl planet-glow">
+                <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-full overflow-hidden border-2 sm:border-4 border-violet-500/30 shadow-2xl planet-glow">
                   <Image
                     src="/profile.jpg"
                     alt={siteConfig.name}
                     fill
                     className="object-cover"
                     priority
-                    sizes="(max-width: 640px) 192px, (max-width: 768px) 256px, (max-width: 1024px) 288px, 384px"
+                    sizes="(max-width: 640px) 192px, (max-width: 768px) 224px, (max-width: 1024px) 288px, 384px"
                   />
                   {/* Overlay gradient - cosmic themed */}
                   <div className="absolute inset-0 bg-linear-to-br from-violet-600/20 via-transparent to-blue-600/20 pointer-events-none" />
@@ -348,12 +350,12 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator - positioned at bottom center of hero */}
+      {/* Scroll indicator - positioned at bottom center of hero - hidden on mobile */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 2.5, duration: 0.5 }}
-        className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-20"
+        className="hidden lg:flex absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 z-20"
       >
         <Magnetic strength={0.5}>
           <motion.div

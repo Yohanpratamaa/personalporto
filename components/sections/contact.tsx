@@ -79,7 +79,7 @@ export function Contact() {
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -173,7 +173,7 @@ export function Contact() {
           subtitle="Have a project in mind or want to collaborate? Feel free to reach out!"
         />
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 lg:gap-16">
           {/* Contact Info */}
           <FadeContent direction="left" blur className="space-y-8">
             <div className="space-y-4">
@@ -283,8 +283,11 @@ export function Contact() {
                     style={{ transformOrigin: "left" }}
                   />
 
-                  <CardContent className="p-6 sm:p-8">
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                  <CardContent className="p-5 sm:p-6 md:p-7 lg:p-8">
+                    <form
+                      onSubmit={handleSubmit}
+                      className="space-y-4 sm:space-y-5 md:space-y-6"
+                    >
                       {/* Name Field */}
                       <FadeContent
                         delay={0.3}
@@ -312,7 +315,7 @@ export function Contact() {
                             onBlur={() => setFocusedField(null)}
                             required
                             disabled={isSubmitting}
-                            className={`h-12 bg-[#0a0a1a]/80 border-violet-500/20 text-white placeholder:text-gray-500 transition-all duration-300 ${
+                            className={`h-11 sm:h-12 bg-[#0a0a1a]/80 border-violet-500/20 text-white placeholder:text-gray-500 transition-all duration-300 ${
                               focusedField === "name"
                                 ? "border-violet-500 ring-2 ring-violet-500/20 shadow-lg shadow-violet-500/10"
                                 : ""
@@ -346,7 +349,7 @@ export function Contact() {
                             onBlur={() => setFocusedField(null)}
                             required
                             disabled={isSubmitting}
-                            className={`h-12 bg-[#0a0a1a]/80 border-violet-500/20 text-white placeholder:text-gray-500 transition-all duration-300 ${
+                            className={`h-11 sm:h-12 bg-[#0a0a1a]/80 border-violet-500/20 text-white placeholder:text-gray-500 transition-all duration-300 ${
                               focusedField === "email"
                                 ? "border-violet-500 ring-2 ring-violet-500/20 shadow-lg shadow-violet-500/10"
                                 : ""

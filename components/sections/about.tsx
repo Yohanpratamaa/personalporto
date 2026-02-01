@@ -48,8 +48,8 @@ function useIsMobile() {
 }
 
 const stats = [
-  { value: 1, suffix: "+", label: "Years Experience", icon: Clock },
-  { value: 5, suffix: "+", label: "Projects Built", icon: Rocket },
+  { value: 2, suffix: "+", label: "Years Experience", icon: Clock },
+  { value: 20, suffix: "+", label: "Projects Built", icon: Rocket },
   { value: 10, suffix: "+", label: "Technologies", icon: Zap },
   { value: 100, suffix: "%", label: "Dedication", icon: Heart },
 ];
@@ -102,7 +102,7 @@ export function About() {
           subtitle="Exploring the universe of technology, one project at a time"
         />
 
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+        <div className="grid lg:grid-cols-12 gap-6 sm:gap-7 md:gap-8 lg:gap-12">
           {/* Left Column - Profile Image & Stats */}
           <div className="lg:col-span-5 space-y-8">
             {/* Profile Image with Space Theme */}
@@ -144,7 +144,7 @@ export function About() {
                     )}
 
                     {/* Main image container */}
-                    <div className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-full overflow-hidden border-4 border-violet-500/40 shadow-2xl shadow-violet-500/20">
+                    <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-72 lg:h-72 rounded-full overflow-hidden border-4 border-violet-500/40 shadow-2xl shadow-violet-500/20">
                       <Image
                         src="/foto_2.jpg"
                         alt={siteConfig.name}
@@ -172,12 +172,12 @@ export function About() {
 
             {/* Stats Grid */}
             <FadeContent delay={0.3} direction="up">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
                 {stats.map((stat, index) => (
                   <Magnetic key={stat.label} strength={0.1}>
                     <motion.div
                       whileHover={{ scale: 1.05, y: -5 }}
-                      className="relative p-4 rounded-2xl bg-[#0a0a1a]/60 border border-violet-500/20 backdrop-blur-sm group cursor-default overflow-hidden"
+                      className="relative p-3 sm:p-4 rounded-2xl bg-[#0a0a1a]/60 border border-violet-500/20 backdrop-blur-sm group cursor-default overflow-hidden"
                     >
                       {/* Hover glow */}
                       <div className="absolute inset-0 bg-linear-to-br from-violet-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
