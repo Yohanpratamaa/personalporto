@@ -119,27 +119,31 @@ export function Footer() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="text-center"
         >
-          <p className="text-sm text-muted-foreground flex items-center justify-center gap-1 flex-wrap">
-            <span>Built with</span>
-            <Heart className="h-4 w-4 text-red-500 inline-block mx-1 animate-pulse" />
-            <span>using</span>
-            <Link
-              href="https://nextjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-white hover:text-primary transition-colors underline-offset-4 hover:underline"
-            >
-              Next.js
-            </Link>
-            <span>•</span>
-            <Link
-              href="https://tailwindcss.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-white hover:text-primary transition-colors underline-offset-4 hover:underline"
-            >
-              TailwindCSS
-            </Link>
+          <p className="text-sm text-muted-foreground flex items-center justify-center gap-1.5 flex-wrap">
+            <span className="flex items-center gap-1.5">
+              <span>Built with</span>
+              <Heart className="h-4 w-4 text-red-500 animate-pulse" />
+              <span>using</span>
+            </span>
+            <span className="flex items-center gap-1.5">
+              <Link
+                href="https://nextjs.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-white hover:text-primary transition-colors underline-offset-4 hover:underline"
+              >
+                Next.js
+              </Link>
+              <span>•</span>
+              <Link
+                href="https://tailwindcss.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-white hover:text-primary transition-colors underline-offset-4 hover:underline"
+              >
+                TailwindCSS
+              </Link>
+            </span>
           </p>
         </motion.div>
       </div>
